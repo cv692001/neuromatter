@@ -3,14 +3,16 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 const events = [
-  "SXSW",
-  "Cannes Lions",
-  "CES",
-  "Forbes CMO Summit",
-  "Effie Awards",
-  "AdWeek",
-  "UN Conference",
-  "Ad Age",
+  { name: "UN Conference", image: "/placeholder.svg" },
+  { name: "Cannes Lions", image: "/placeholder.svg" },
+  { name: "SXSW", image: "/placeholder.svg" },
+  { name: "Forbes CMO Summit", image: "/placeholder.svg" },
+  { name: "Effie Awards", image: "/placeholder.svg" },
+  { name: "Ad Age", image: "/placeholder.svg" },
+  { name: "AdWeek", image: "/placeholder.svg" },
+  { name: "CES", image: "/placeholder.svg" },
+  { name: "Brilliant Minds", image: "/placeholder.svg" },
+  { name: "IPA", image: "/placeholder.svg" },
 ];
 
 const SeenAroundSection = () => {
@@ -25,7 +27,7 @@ const SeenAroundSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="heading-lg text-section-dark-foreground">
             You may have seen us{" "}
@@ -33,20 +35,30 @@ const SeenAroundSection = () => {
           </h2>
         </motion.div>
 
-        {/* Marquee Effect */}
-        <div className="relative overflow-hidden">
-          <div className="flex animate-marquee">
-            {[...events, ...events].map((event, index) => (
-              <div
-                key={`${event}-${index}`}
-                className="flex-shrink-0 mx-8 md:mx-12"
-              >
-                <span className="text-section-dark-foreground/60 text-lg md:text-xl font-medium whitespace-nowrap hover:text-section-dark-foreground transition-colors">
-                  {event}
-                </span>
+        {/* Event Cards Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+          {events.map((event, index) => (
+            <motion.div
+              key={event.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="flex flex-col items-center gap-4"
+            >
+              {/* Image Placeholder */}
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-lg bg-section-dark-foreground/10 border border-section-dark-foreground/20 flex items-center justify-center overflow-hidden hover:border-section-dark-foreground/40 transition-colors">
+                <img 
+                  src={event.image} 
+                  alt={event.name}
+                  className="w-16 h-16 md:w-20 md:h-20 object-contain opacity-60"
+                />
               </div>
-            ))}
-          </div>
+              {/* Event Name */}
+              <span className="text-section-dark-foreground/80 text-sm md:text-base font-medium text-center">
+                {event.name}
+              </span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
