@@ -19,37 +19,24 @@ const TestimonialSection = () => {
         >
           <Quote className="w-12 h-12 text-section-dark-foreground/30 mx-auto mb-8" />
           
-          <blockquote className="text-section-dark-foreground heading-md mb-8 leading-relaxed">
-            "It's nothing short of game-changing.
+          <blockquote className="text-section-dark-foreground heading-md mb-6 leading-relaxed">
+            "The emotional side of a product is the brand."
           </blockquote>
           
-          <p className="text-section-dark-foreground/80 body-md mb-8 max-w-3xl mx-auto">
-            It's a staple of our business, in fact, mandatory for my team. It has allowed 
-            us to run real-time optimizations prior to putting work out into the market. 
-            The partnership has meant that we have changed the way we look at our advertising.
-            <br /><br />
-            It removes the debate and the gut instinct and gives you pure facts and science 
-            in your decision-making as a brand leader. Neuro-Insight takes the guesswork out."
-          </p>
-
-          <div className="space-y-1">
-            <p className="text-section-dark-foreground font-semibold">Nick Drake</p>
-            <p className="text-section-dark-foreground/60 text-sm">
-              Vice President of Global Marketing at Google
+          <div className="mb-8">
+            <p className="text-section-dark-foreground/60 text-lg font-medium">
+              — Piyush Pandey
             </p>
-            <p className="text-section-dark-foreground/40 text-xs">
-              (written as CMO of T-Mobile)
+            <p className="text-section-dark-foreground/40 text-sm mt-1">
+              Iconic Indian Ad Filmmaker and CCO, Ogilvy India
             </p>
           </div>
-
-          <motion.a
-            href="#work"
-            className="inline-block mt-10 btn-outline border-section-dark-foreground text-section-dark-foreground hover:bg-section-dark-foreground hover:text-section-dark"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Client Work
-          </motion.a>
+          
+          <p className="text-section-dark-foreground/80 body-md max-w-3xl mx-auto">
+            That's precisely what neuromarketing helps decode — the emotional and subconscious 
+            reactions that drive real consumer choice. It removes the debate and the gut instinct 
+            and gives you pure facts and science in your decision-making as a brand leader.
+          </p>
         </motion.div>
       </div>
     </section>

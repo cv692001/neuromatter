@@ -21,7 +21,7 @@ const TechnologySection = () => {
             Our Technology
           </h2>
           <p className="body-lg text-section-dark-foreground/70 max-w-2xl mx-auto">
-            Steady State Topography (SST) - the world's most advanced brain imaging methodology for marketing applications.
+            Advanced brain imaging methodology for marketing applications powered by neuroscience.
           </p>
         </motion.div>
 
@@ -29,7 +29,7 @@ const TechnologySection = () => {
           {[
             {
               icon: Brain,
-              title: "SST Brain Imaging",
+              title: "BCI-EEG Brain Imaging",
               description: "Patented technology that measures second-by-second brain response with millisecond precision."
             },
             {

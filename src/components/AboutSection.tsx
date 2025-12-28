@@ -17,10 +17,9 @@ const AboutSection = () => {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="heading-lg text-foreground mb-8">
-            A homegrown initiative building{" "}
-            <span className="block">India's first neuromarketing</span>
-            <span className="block">and brain insights</span>
-            <span className="block">resource.</span>
+            <span className="block">A homegrown initiative</span>
+            <span className="block">building India's first</span>
+            <span className="block">neuromarketing lab.</span>
           </h2>
           <p className="body-lg text-muted-foreground max-w-3xl mx-auto">
             Our goal is simple — help organisations truly understand their customer's minds by applying{" "}

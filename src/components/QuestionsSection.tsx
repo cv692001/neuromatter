@@ -3,13 +3,13 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 const questions = [
-  "How do we optimize point of sale placements?",
+  "How do we make our products stand out at stores?",
   "Which product to include in the next line extension?",
   "What media buy will be most effective for our ad?",
-  "Which celebrity represents our brand values?",
+  "Which brand interactions build subconscious trust or doubt?",
   "What makes for the most effective sonic branding?",
   "What is the best way to get users most engaged?",
-  "Where is event sponsorship most effective?",
+  "What causes last-minute consumer hesitation?",
   "Which brand promise speaks best to our consumer?",
 ];
 
@@ -28,8 +28,8 @@ const QuestionsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="heading-lg text-foreground max-w-4xl mx-auto">
-            When our tech meets your consumer, there is{" "}
-            <span className="block">no limit to the questions we can answer.</span>
+            When our tech meets your consumer,{" "}
+            <span className="block">the possibilities are limitless.</span>
           </h2>
         </motion.div>
 
@@ -58,9 +58,9 @@ const QuestionCard = ({ question, index }: QuestionCardProps) => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-card p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow card-hover border border-border"
+      className="bg-card p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow card-hover border border-border h-full flex items-center justify-center min-h-[120px]"
     >
-      <p className="text-card-foreground text-sm md:text-base font-medium">
+      <p className="text-card-foreground text-sm md:text-base font-medium text-center leading-relaxed">
         {question}
       </p>
     </motion.div>

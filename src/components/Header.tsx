@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
+import NMLogo from "./NMLogo";
 
 const navItems = [
   { name: "Capabilities", href: "#capabilities" },
@@ -19,7 +20,6 @@ const navItems = [
   { name: "Work", href: "#work" },
   { name: "Difference", href: "#difference" },
   { name: "Technology", href: "#technology" },
-  { name: "People", href: "#people" },
   { name: "News", href: "#news" },
 ];
 
@@ -44,11 +44,9 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-nav">
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20 px-6 md:px-12 lg:px-20">
-          {/* Logo - NM Placeholder */}
+          {/* Logo - NM */}
           <a href="/" className="flex items-center">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-xl tracking-tight">NM</span>
-            </div>
+            <NMLogo size="md" />
           </a>
 
           {/* Desktop Navigation */}
