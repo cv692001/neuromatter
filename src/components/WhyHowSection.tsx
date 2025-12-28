@@ -9,23 +9,23 @@ const sections = [
     highlight: "90% of decision-making takes place in the subconscious.",
     description:
       "Most tools access only the conscious, relying on unreliable, self-reported data. This creates a challenge when predicting anything: from national elections to movie performance to new product success.",
-    link: { text: "See how we're different.", href: "#difference" },
+    link: { text: "See how we're different.", href: "#news" },
   },
   {
     id: "how",
     title: "How?",
-    highlight: "Neuro-Insight leverages proprietary tech, Steady State Topography (SST).",
+    highlight: "NeuroMatter leverages EEG (electroencephalography) technology.",
     description:
-      "Neuro-Insight leverages proprietary technology, Steady State Topography (SST), to bypass conscious filters by going straight to the source of all decision-making — the brain. SST™ is patented, validated, trusted, and respected by science and businesses.",
+      "NeuroMatter leverages EEG (electroencephalography) to capture rapid fluctuations in cortical electrical activity via scalp sensors to go straight to the source of decision making — the brain.",
     link: { text: "Check out our tech.", href: "#technology" },
   },
   {
     id: "sowhat",
     title: "So What?",
-    highlight: "SST has an 86% correlation with in-market sales.",
+    highlight: "Over 50% of marketing spend is wasted.",
     description:
-      "Our industry has long accepted that over 50% of marketing spend is wasted — that's around $400 billion in the US alone. SST has an 86% correlation with in-market sales making your marketing dollars work harder and providing your consumers with what they truly need.",
-    link: { text: "Check out our work.", href: "#work" },
+      "Our industry has long accepted that over 50% of marketing spend is wasted — that's around ₹1.45 billion in India alone. Through EEG technology, you receive exact scores for each marketing stimuli, indicating what works more on consumers as per your defined objectives.",
+    link: { text: "Check out the truth.", href: "#work" },
   },
 ];
 
