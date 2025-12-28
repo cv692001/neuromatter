@@ -1,47 +1,65 @@
 import { motion } from "framer-motion";
 
+// Placeholder logo - same as header
+const logoPlaceholder = "/placeholder.svg";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-section-dark py-12 px-6 md:px-12 lg:px-20">
+    <footer className="bg-section-dark py-16 px-6 md:px-12 lg:px-20">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Main Footer Content */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 mb-12">
           {/* Logo */}
-          <motion.div 
-            className="flex items-center gap-3"
+          <motion.a 
+            href="/"
+            className="flex items-center"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-10 h-10 bg-section-dark-foreground rounded-full flex items-center justify-center">
-              <span className="text-section-dark font-bold text-lg">N</span>
-            </div>
-            <span className="text-section-dark-foreground font-semibold">
-              Neuro-Insight
-            </span>
-          </motion.div>
+            <img 
+              src={logoPlaceholder}
+              alt="Neuro-Insight Logo"
+              className="w-12 h-12 object-contain"
+            />
+          </motion.a>
 
           {/* Newsletter Signup */}
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <p className="text-section-dark-foreground/60 text-sm">
+          <div className="flex flex-col gap-4 w-full lg:w-auto">
+            <p className="text-section-dark-foreground text-lg font-medium">
               Keep up with Neuro-Insight
             </p>
-            <div className="flex gap-2">
+            <p className="text-section-dark-foreground/60 text-sm max-w-md">
+              Subscribe to our monthly newsletter for company updates and to stay up to date on the latest in the world of neuromarketing!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 mt-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 rounded-full bg-section-dark-foreground/10 border border-section-dark-foreground/20 text-section-dark-foreground placeholder:text-section-dark-foreground/40 text-sm focus:outline-none focus:border-section-dark-foreground/50 transition-colors"
+                className="flex-1 px-5 py-3 rounded-full bg-section-dark-foreground/10 border border-section-dark-foreground/20 text-section-dark-foreground placeholder:text-section-dark-foreground/40 text-sm focus:outline-none focus:border-section-dark-foreground/50 transition-colors min-w-[250px]"
               />
-              <button className="btn-outline border-section-dark-foreground text-section-dark-foreground hover:bg-section-dark-foreground hover:text-section-dark text-xs py-2">
+              <button className="btn-outline border-section-dark-foreground text-section-dark-foreground hover:bg-section-dark-foreground hover:text-section-dark text-sm py-3 px-8 whitespace-nowrap">
                 Subscribe
               </button>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-section-dark-foreground/10 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-section-dark-foreground/40 text-sm">
-            <p>© {currentYear} Neuro-Insight. All rights reserved.</p>
-            <div className="flex gap-6">
+        {/* Footer Links */}
+        <div className="border-t border-section-dark-foreground/10 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Copyright & Powered By */}
+            <div className="flex flex-col gap-1 text-center md:text-left">
+              <p className="text-section-dark-foreground/40 text-sm">
+                © {currentYear} Neuro-Insight. All rights reserved.
+              </p>
+              <p className="text-section-dark-foreground/60 text-sm">
+                Powered by <span className="text-section-dark-foreground/80 font-medium">Neuromatter Group</span>
+              </p>
+            </div>
+
+            {/* Legal Links */}
+            <div className="flex flex-wrap justify-center gap-6 text-section-dark-foreground/40 text-sm">
               <a href="#" className="hover:text-section-dark-foreground transition-colors">
                 Privacy Policy
               </a>
