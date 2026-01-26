@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 
 const rotatingWords = ["measure.", "decode.", "predict.", "optimize."];
 
-// Enhanced Neural Network Animation
+// Neural Network Animation
 const HeroSection = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -22,7 +21,7 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Enhanced Neural Network Canvas Animation
+  // Neural Network Canvas Animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -60,13 +59,13 @@ const HeroSection = () => {
       // Create neural nodes in concentric circles (brain-like structure)
       const layers = [
         { count: 1, radius: 0, nodeSize: 8 },
-        { count: 8, radius: maxRadius * 0.15, nodeSize: 6 },
-        { count: 16, radius: maxRadius * 0.3, nodeSize: 5 },
-        { count: 24, radius: maxRadius * 0.45, nodeSize: 4 },
-        { count: 32, radius: maxRadius * 0.6, nodeSize: 3 },
-        { count: 48, radius: maxRadius * 0.75, nodeSize: 2.5 },
-        { count: 64, radius: maxRadius * 0.9, nodeSize: 2 },
-        { count: 80, radius: maxRadius * 1.05, nodeSize: 1.5 },
+        { count: 6, radius: maxRadius * 0.15, nodeSize: 6 },
+        { count: 12, radius: maxRadius * 0.3, nodeSize: 5 },
+        { count: 18, radius: maxRadius * 0.45, nodeSize: 4 },
+        { count: 24, radius: maxRadius * 0.6, nodeSize: 3 },
+        { count: 32, radius: maxRadius * 0.75, nodeSize: 2.5 },
+        { count: 40, radius: maxRadius * 0.9, nodeSize: 2 },
+        { count: 48, radius: maxRadius * 1.05, nodeSize: 1.5 },
       ];
       
       layers.forEach((layer) => {
@@ -75,6 +74,17 @@ const HeroSection = () => {
           const radiusVariation = layer.radius * (0.9 + Math.random() * 0.2);
           const x = centerX + Math.cos(angle) * radiusVariation;
           const y = centerY + Math.sin(angle) * radiusVariation;
+          
+          // Assign random brightness - some very bright, some dim
+          const brightnessRoll = Math.random();
+          let brightness: number;
+          if (brightnessRoll > 0.85) {
+            brightness = 1.0; // Very bright (15%)
+          } else if (brightnessRoll > 0.6) {
+            brightness = 0.7; // Medium bright (25%)
+          } else {
+            brightness = 0.3; // Dim (60%)
+          }
           
           nodesRef.current.push({
             x,
@@ -86,6 +96,7 @@ const HeroSection = () => {
             phase: Math.random() * Math.PI * 2,
             pulsePhase: Math.random() * Math.PI * 2,
             layer: layers.indexOf(layer),
+            brightness,
           });
         }
       });
@@ -98,8 +109,8 @@ const HeroSection = () => {
             const dy = node.y - otherNode.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
             
-            // Connect nodes within certain distance
-            if (distance < maxRadius * 0.25 && Math.random() > 0.3) {
+            // Connect nodes within certain distance - more connections
+            if (distance < maxRadius * 0.2 && Math.random() > 0.2) {
               connectionsRef.current.push({
                 from: i,
                 to: j,
@@ -170,7 +181,7 @@ const HeroSection = () => {
         ctx.beginPath();
         ctx.moveTo(fromNode.x, fromNode.y);
         ctx.lineTo(toNode.x, toNode.y);
-        ctx.strokeStyle = `rgba(120, 180, 255, ${baseOpacity * centerFactor})`;
+        ctx.strokeStyle = `rgba(100, 140, 255, ${(baseOpacity * 2) * centerFactor})`;
         ctx.lineWidth = 0.5 + pulse * 0.5;
         ctx.stroke();
         
@@ -182,12 +193,12 @@ const HeroSection = () => {
         if (Math.random() > 0.97) {
           ctx.beginPath();
           ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(100, 200, 255, ${0.6 * centerFactor})`;
+          ctx.fillStyle = `rgba(120, 180, 255, ${0.9 * centerFactor})`;
           ctx.fill();
         }
       });
       
-      // Draw nodes with glow effect
+      // Draw nodes with glow effect - varied brightness
       nodesRef.current.forEach(node => {
         const distFromCenter = Math.sqrt((node.x - centerX) ** 2 + (node.y - centerY) ** 2);
         const maxRadius = Math.min(canvas.width, canvas.height) * 0.45;
@@ -195,34 +206,34 @@ const HeroSection = () => {
         
         const pulse = Math.sin(timeRef.current * 3 + node.pulsePhase) * 0.3 + 0.7;
         const size = node.size * pulse;
+        const brightness = node.brightness || 0.5;
         
-        // Outer glow
-        const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, size * 4);
-        glowGradient.addColorStop(0, `rgba(80, 160, 255, ${0.3 * centerFactor})`);
-        glowGradient.addColorStop(1, 'rgba(80, 160, 255, 0)');
+        // Outer glow - royal blue tint - intensity varies by brightness
+        const glowSize = size * (3 + brightness * 5); // Bright nodes have bigger glow
+        const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowSize);
+        glowGradient.addColorStop(0, `rgba(80, 130, 255, ${0.9 * centerFactor * brightness})`);
+        glowGradient.addColorStop(0.3, `rgba(65, 105, 225, ${0.5 * centerFactor * brightness})`);
+        glowGradient.addColorStop(1, 'rgba(65, 105, 225, 0)');
         ctx.beginPath();
-        ctx.arc(node.x, node.y, size * 4, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, glowSize, 0, Math.PI * 2);
         ctx.fillStyle = glowGradient;
         ctx.fill();
         
-        // Core node
+        // Core node - brightness varies
         ctx.beginPath();
         ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
-        const coreOpacity = (0.6 + pulse * 0.4) * centerFactor;
-        ctx.fillStyle = `rgba(200, 230, 255, ${coreOpacity})`;
+        const coreOpacity = (0.3 + brightness * 0.7 + pulse * 0.1) * centerFactor;
+        ctx.fillStyle = `rgba(180, 210, 255, ${coreOpacity})`;
         ctx.fill();
-      });
-      
-      // Add floating particles
-      for (let i = 0; i < 3; i++) {
-        const particleX = centerX + Math.cos(timeRef.current * 0.5 + i * 2) * 150;
-        const particleY = centerY + Math.sin(timeRef.current * 0.3 + i * 2) * 100;
         
-        ctx.beginPath();
-        ctx.arc(particleX, particleY, 1, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(150, 200, 255, 0.5)';
-        ctx.fill();
-      }
+        // Extra bright center point - only for bright nodes
+        if (brightness > 0.6) {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, size * 0.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${coreOpacity * brightness})`;
+          ctx.fill();
+        }
+      });
       
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -241,15 +252,8 @@ const HeroSection = () => {
     };
   }, []);
 
-  const scrollToContent = () => {
-    const nextSection = document.getElementById("about");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20 px-4 md:px-8">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20 px-4 md:px-8 lg:pl-24">
       {/* Hero Container with rounded corners */}
       <div className="relative w-full max-w-[calc(100%-2rem)] md:max-w-[calc(100%-4rem)] h-[calc(100vh-6rem)] md:h-[calc(100vh-8rem)] rounded-2xl md:rounded-3xl overflow-hidden">
         {/* Canvas for neural network animation */}
@@ -258,6 +262,14 @@ const HeroSection = () => {
           className="absolute inset-0 w-full h-full cursor-crosshair"
         />
 
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/50 z-[5]" />
+        
+        {/* Center vignette for text area */}
+        <div className="absolute inset-0 z-[6]" style={{
+          background: 'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0,0,0,0.7) 0%, transparent 70%)'
+        }} />
+
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
           {/* Tagline */}
@@ -265,9 +277,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/60 text-sm md:text-base uppercase tracking-[0.3em] mb-6"
+            className="text-white/80 text-sm md:text-base uppercase tracking-[0.3em] mb-6 font-medium drop-shadow-lg"
           >
-            Neuroscience-Powered Insights
+            Neuroscience Powered Marketing Insights
           </motion.p>
           
           <motion.div
@@ -276,7 +288,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-center"
           >
-            <h1 className="text-white heading-xl flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <h1 className="text-white heading-xl flex flex-col sm:flex-row items-center gap-2 sm:gap-4 drop-shadow-2xl">
               <span className="font-light">We</span>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -288,7 +300,7 @@ const HeroSection = () => {
                     duration: 0.6,
                     ease: [0.22, 1, 0.36, 1]
                   }}
-                  className="inline-block font-bold bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent"
+                  className="inline-block font-bold text-white"
                 >
                   {rotatingWords[currentWordIndex]}
                 </motion.span>
@@ -301,45 +313,26 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-white/50 text-lg md:text-xl mt-8 max-w-xl"
+            className="text-white/70 text-lg md:text-xl mt-8 max-w-xl drop-shadow-lg"
           >
-            Unlock the secrets of the human mind to drive meaningful connections
+            Decode the secrets of human mind to drive Strategic Branding decisions
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 mt-10"
+            className="mt-10"
           >
             <a 
-              href="#work" 
-              className="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105"
-            >
-              See Our Work
-            </a>
-            <a 
               href="#contact" 
-              className="px-8 py-3 border-2 border-white/30 text-white font-medium rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300"
+              className="px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-2xl"
             >
               Get in Touch
             </a>
           </motion.div>
 
-          {/* Scroll Indicator */}
-          <motion.button
-            onClick={scrollToContent}
-            className="absolute bottom-12 left-1/2 -translate-x-1/2 scroll-indicator"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            aria-label="Scroll to content"
-          >
-            <div className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center hover:border-white/60 transition-colors group">
-              <ChevronDown className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
-            </div>
-          </motion.button>
         </div>
       </div>
     </section>

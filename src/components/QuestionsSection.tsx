@@ -2,15 +2,28 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
-const questions = [
-  "How do we make our products stand out at stores?",
-  "Which product to include in the next line extension?",
-  "What media buy will be most effective for our ad?",
-  "Which brand interactions build subconscious trust or doubt?",
-  "What makes for the most effective sonic branding?",
-  "What is the best way to get users most engaged?",
-  "What causes last-minute consumer hesitation?",
-  "Which brand promise speaks best to our consumer?",
+// Organized in 4 columns as requested
+const questionColumns = [
+  // Front column (first)
+  [
+    "What causes last-minute consumer hesitation?",
+    "Which brand promise speaks best to our consumer?",
+  ],
+  // Middle column
+  [
+    "Is the brand actually being processed, or just the entertainment?",
+    "Does this creative build memory, or will it be forgotten tomorrow?",
+  ],
+  // Second last column
+  [
+    "Where are consumers confused, overloaded, or cognitively fatigued?",
+    "Which element is building resistance in consumer's buying process?",
+  ],
+  // Last column (end)
+  [
+    "Why did a 'well-tested' campaign fail in-market?",
+    "Which scene, message, or frame actually drives purchase intent?",
+  ],
 ];
 
 const QuestionsSection = () => {
@@ -28,14 +41,18 @@ const QuestionsSection = () => {
           className="text-center mb-12"
         >
           <h2 className="heading-lg text-foreground max-w-4xl mx-auto">
-            When our tech meets your consumer,{" "}
-            <span className="block">the possibilities are limitless.</span>
+            Where science meets consumer insight,{" "}
+            <span className="block">possibilities are limitless.</span>
           </h2>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {questions.map((question, index) => (
-            <QuestionCard key={index} question={question} index={index} />
+          {questionColumns.map((column, colIndex) => (
+            <div key={colIndex} className="flex flex-col gap-4 md:gap-6">
+              {column.map((question, qIndex) => (
+                <QuestionCard key={`${colIndex}-${qIndex}`} question={question} index={colIndex * 2 + qIndex} />
+              ))}
+            </div>
           ))}
         </div>
       </div>
