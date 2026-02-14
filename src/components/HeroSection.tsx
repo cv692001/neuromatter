@@ -128,28 +128,16 @@ const HeroSection = () => {
       
       timeRef.current += 0.016;
       
-      // Create gradient background with subtle blue ambient glow
+      // Create gradient background
       const gradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, canvas.width * 0.7
+        canvas.width / 2, canvas.height / 2, canvas.width * 0.6
       );
-      gradient.addColorStop(0, '#0d0d12'); // Slight blue tint in center
-      gradient.addColorStop(0.3, '#080810');
-      gradient.addColorStop(0.6, '#050508');
+      gradient.addColorStop(0, '#0a0a0a');
+      gradient.addColorStop(0.5, '#050505');
       gradient.addColorStop(1, '#000000');
       
       ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Add ambient blue glow in the center
-      const ambientGlow = ctx.createRadialGradient(
-        canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, Math.min(canvas.width, canvas.height) * 0.5
-      );
-      ambientGlow.addColorStop(0, 'rgba(50, 80, 150, 0.15)');
-      ambientGlow.addColorStop(0.4, 'rgba(40, 70, 140, 0.08)');
-      ambientGlow.addColorStop(1, 'rgba(30, 50, 120, 0)');
-      ctx.fillStyle = ambientGlow;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       const centerX = canvas.width / 2;
@@ -175,13 +163,13 @@ const HeroSection = () => {
         }
       });
       
-      // Draw connections with INTENSE pulsing glow effect
+      // Draw connections with pulsing effect
       connectionsRef.current.forEach(conn => {
         const fromNode = nodesRef.current[conn.from];
         const toNode = nodesRef.current[conn.to];
         
         const pulse = Math.sin(timeRef.current * 2 + conn.pulseOffset) * 0.5 + 0.5;
-        const baseOpacity = 0.15 + pulse * 0.2; // Much brighter
+        const baseOpacity = 0.08 + pulse * 0.12;
         
         // Distance from center affects opacity
         const avgX = (fromNode.x + toNode.x) / 2;
@@ -190,38 +178,27 @@ const HeroSection = () => {
         const maxRadius = Math.min(canvas.width, canvas.height) * 0.45;
         const centerFactor = Math.max(0, 1 - distFromCenter / maxRadius);
         
-        // Glow effect on connections
-        ctx.save();
-        ctx.shadowColor = 'rgba(100, 150, 255, 0.8)';
-        ctx.shadowBlur = 12;
-        
         ctx.beginPath();
         ctx.moveTo(fromNode.x, fromNode.y);
         ctx.lineTo(toNode.x, toNode.y);
-        ctx.strokeStyle = `rgba(120, 160, 255, ${(baseOpacity * 2.5) * centerFactor})`;
-        ctx.lineWidth = 1 + pulse * 1.5;
+        ctx.strokeStyle = `rgba(100, 140, 255, ${(baseOpacity * 2) * centerFactor})`;
+        ctx.lineWidth = 0.5 + pulse * 0.5;
         ctx.stroke();
-        ctx.restore();
         
-        // Draw pulse traveling along connection - larger and brighter
+        // Draw pulse traveling along connection
         const pulsePos = (timeRef.current * 0.5 + conn.pulseOffset) % 1;
         const pulseX = fromNode.x + (toNode.x - fromNode.x) * pulsePos;
         const pulseY = fromNode.y + (toNode.y - fromNode.y) * pulsePos;
         
-        if (Math.random() > 0.92) {
-          // Glowing traveling pulse
-          const pulseGlow = ctx.createRadialGradient(pulseX, pulseY, 0, pulseX, pulseY, 8);
-          pulseGlow.addColorStop(0, `rgba(200, 220, 255, ${1.0 * centerFactor})`);
-          pulseGlow.addColorStop(0.4, `rgba(150, 180, 255, ${0.6 * centerFactor})`);
-          pulseGlow.addColorStop(1, 'rgba(100, 150, 255, 0)');
+        if (Math.random() > 0.97) {
           ctx.beginPath();
-          ctx.arc(pulseX, pulseY, 8, 0, Math.PI * 2);
-          ctx.fillStyle = pulseGlow;
+          ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(120, 180, 255, ${0.9 * centerFactor})`;
           ctx.fill();
         }
       });
       
-      // Draw nodes with glow effect - INTENSE illumination
+      // Draw nodes with glow effect - varied brightness
       nodesRef.current.forEach(node => {
         const distFromCenter = Math.sqrt((node.x - centerX) ** 2 + (node.y - centerY) ** 2);
         const maxRadius = Math.min(canvas.width, canvas.height) * 0.45;
@@ -231,41 +208,29 @@ const HeroSection = () => {
         const size = node.size * pulse;
         const brightness = node.brightness || 0.5;
         
-        // LARGE outer glow - royal blue tint - much bigger and brighter
-        const glowSize = size * (8 + brightness * 12); // Much bigger glow
+        // Outer glow - royal blue tint - intensity varies by brightness
+        const glowSize = size * (3 + brightness * 5); // Bright nodes have bigger glow
         const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glowSize);
-        glowGradient.addColorStop(0, `rgba(100, 150, 255, ${1.0 * centerFactor * brightness})`);
-        glowGradient.addColorStop(0.2, `rgba(80, 130, 255, ${0.8 * centerFactor * brightness})`);
-        glowGradient.addColorStop(0.5, `rgba(65, 105, 225, ${0.4 * centerFactor * brightness})`);
+        glowGradient.addColorStop(0, `rgba(80, 130, 255, ${0.9 * centerFactor * brightness})`);
+        glowGradient.addColorStop(0.3, `rgba(65, 105, 225, ${0.5 * centerFactor * brightness})`);
         glowGradient.addColorStop(1, 'rgba(65, 105, 225, 0)');
         ctx.beginPath();
         ctx.arc(node.x, node.y, glowSize, 0, Math.PI * 2);
         ctx.fillStyle = glowGradient;
         ctx.fill();
         
-        // Secondary glow layer for extra intensity
-        const glow2Size = size * (4 + brightness * 6);
-        const glow2Gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, glow2Size);
-        glow2Gradient.addColorStop(0, `rgba(150, 180, 255, ${0.9 * centerFactor * brightness})`);
-        glow2Gradient.addColorStop(0.5, `rgba(100, 140, 255, ${0.4 * centerFactor * brightness})`);
-        glow2Gradient.addColorStop(1, 'rgba(80, 120, 255, 0)');
+        // Core node - brightness varies
         ctx.beginPath();
-        ctx.arc(node.x, node.y, glow2Size, 0, Math.PI * 2);
-        ctx.fillStyle = glow2Gradient;
+        ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
+        const coreOpacity = (0.3 + brightness * 0.7 + pulse * 0.1) * centerFactor;
+        ctx.fillStyle = `rgba(180, 210, 255, ${coreOpacity})`;
         ctx.fill();
         
-        // Core node - very bright
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, size * 1.2, 0, Math.PI * 2);
-        const coreOpacity = (0.5 + brightness * 0.5 + pulse * 0.1) * centerFactor;
-        ctx.fillStyle = `rgba(200, 220, 255, ${coreOpacity})`;
-        ctx.fill();
-        
-        // Hot white center point - for all visible nodes
-        if (brightness > 0.3) {
+        // Extra bright center point - only for bright nodes
+        if (brightness > 0.6) {
           ctx.beginPath();
-          ctx.arc(node.x, node.y, size * 0.6, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${coreOpacity * brightness * 1.2})`;
+          ctx.arc(node.x, node.y, size * 0.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${coreOpacity * brightness})`;
           ctx.fill();
         }
       });
