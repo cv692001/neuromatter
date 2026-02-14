@@ -142,7 +142,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Logo & Copyright */}
             <div className="flex items-center gap-3">
-              <NMLogo size="sm" variant="light" />
+              <NMLogo size="sm" />
               <p className="text-section-dark-foreground/40 text-xs">
                 © 2026 Neuromatter Group. All rights reserved.
               </p>

@@ -22,7 +22,7 @@ const AboutSection = () => {
             <span className="block">neuromarketing lab.</span>
           </h2>
           <p className="body-lg text-muted-foreground max-w-3xl mx-auto">
-            Our goal is simple — help organisations truly understand their customer's mind by applying{" "}
+            Our goal is simple — help organisations truly understand their customer's minds by applying{" "}
             <strong className="text-foreground">BCI tech and neuroscience based analytics</strong>{" "}
             for Marketing Strategies.
           </p>

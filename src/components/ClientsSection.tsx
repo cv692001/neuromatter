@@ -59,7 +59,7 @@ const ClientsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="heading-lg text-foreground">
-            Use the same methods{" "}
+            Use the same neuroscience-driven approaches{" "}
             <span className="block">that top brands rely on</span>
           </h2>
           <p className="body-md text-muted-foreground mt-6 max-w-2xl mx-auto">
