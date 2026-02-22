@@ -1,5 +1,3 @@
-import { GOOGLE_SHEET_SCRIPT_URL } from "@/lib/constants";
-
 export type SheetSubmitResult = { success: true } | { success: false; error: string };
 
 /** RFC-style email format validation (local@domain.tld). */
@@ -10,12 +8,9 @@ export function isValidEmail(value: string): boolean {
   return trimmed.length > 0 && EMAIL_REGEX.test(trimmed);
 }
 
-/** In dev, use Vite proxy to avoid CORS when calling Google Apps Script. */
+/** Use same-origin API so CORS is avoided: Vite proxy in dev, Vercel serverless in prod. */
 function getSheetSubmitUrl(): string {
-  if (typeof import.meta !== "undefined" && import.meta.env?.DEV) {
-    return "/api/sheet-submit";
-  }
-  return GOOGLE_SHEET_SCRIPT_URL;
+  return "/api/sheet-submit";
 }
 
 /**
@@ -25,7 +20,6 @@ function getSheetSubmitUrl(): string {
 export async function submitEmailToSheet(email: string): Promise<SheetSubmitResult> {
   const url = getSheetSubmitUrl();
   if (!url?.trim()) {
-    console.warn("VITE_GOOGLE_SHEET_SCRIPT_URL is not set; email not sent to sheet.");
     return { success: false, error: "Sheet integration not configured." };
   }
 

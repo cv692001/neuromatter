@@ -48,14 +48,14 @@ function jsonResponse(obj) {
 
 ## 3. Deploy as web app
 
-1. Click **Deploy → New deployment**.
-2. Click the gear icon next to "Select type", choose **Web app**.
-3. Set:
-   - **Description:** e.g. "Email collection"
-   - **Execute as:** Me (your account)
-   - **Who has access:** Anyone
-4. Click **Deploy**. Authorize the app when prompted (your Google account).
-5. Copy the **Web app URL** (looks like `https://script.google.com/macros/s/.../exec`). You will use this in the app.
+  1. Click **Deploy → New deployment**.
+  2. Click the gear icon next to "Select type", choose **Web app**.
+  3. Set:
+    - **Description:** e.g. "Email collection"
+    - **Execute as:** Me (your account)
+    - **Who has access:** Anyone
+  4. Click **Deploy**. Authorize the app when prompted (your Google account).
+  5. Copy the **Web app URL** (looks like `https://script.google.com/macros/s/.../exec`). You will use this in the app.
 
 ### If you see "Something went wrong" when deploying
 
@@ -77,7 +77,7 @@ function jsonResponse(obj) {
 6. **Check Google status**  
    If it still fails, check [Google Workspace Status](https://www.google.com/appsstatus) for any outage and try again later.
 
-## 4. Configure the app
+## 4. Configure the app (optional, for local overrides)
 
 1. In the project root, create or edit **.env**:
    ```env
@@ -85,5 +85,7 @@ function jsonResponse(obj) {
    ```
 2. Replace the URL with the **Web app URL** you copied.
 3. Restart the dev server (`npm run dev`) so the new env is picked up.
+
+A default script URL is already set in the repo, so the form works locally (via Vite proxy) and on **Vercel** (via the `api/sheet-submit.js` serverless function). On Vercel you can optionally set **GOOGLE_SHEET_SCRIPT_URL** in Project Settings → Environment Variables if you use a different Apps Script URL.
 
 After this, when a user enters an email and clicks the send button in the "Stay Updated" section (or reaches the contact section via "Get in Touch"), the email is sent to your Google Sheet and appended under the **emails** column.
