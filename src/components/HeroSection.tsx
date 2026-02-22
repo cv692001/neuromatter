@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 
 const rotatingWords = ["measure.", "decode.", "predict.", "optimize."];
 
@@ -241,13 +240,6 @@ const HeroSection = () => {
     };
   }, []);
 
-  const scrollToContent = () => {
-    const nextSection = document.getElementById("about");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20 px-4 md:px-8">
       {/* Hero Container with rounded corners */}
@@ -267,7 +259,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-white/60 text-sm md:text-base uppercase tracking-[0.3em] mb-6"
           >
-            Neuroscience-Powered Insights
+            Neuroscience powered Branding Decisions
           </motion.p>
           
           <motion.div
@@ -303,7 +295,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-white/50 text-lg md:text-xl mt-8 max-w-xl"
           >
-            Unlock the secrets of the human mind to drive meaningful connections
+            Decode the secrets of Human Subconscious Mind to engage with your audience in a deeper way
           </motion.p>
 
           {/* CTA Buttons */}
@@ -314,32 +306,18 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 mt-10"
           >
             <a 
-              href="#work" 
-              className="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105"
+              href="#news" 
+              className="inline-flex items-center justify-center text-center px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 min-w-0"
             >
-              See Our Work
+              News
             </a>
             <a 
               href="#contact" 
-              className="px-8 py-3 border-2 border-white/30 text-white font-medium rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300"
+              className="inline-flex items-center justify-center text-center px-8 py-3 border-2 border-white/30 text-white font-medium rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300 min-w-0"
             >
               Get in Touch
             </a>
           </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.button
-            onClick={scrollToContent}
-            className="absolute bottom-12 left-1/2 -translate-x-1/2 scroll-indicator"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
-            aria-label="Scroll to content"
-          >
-            <div className="w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center hover:border-white/60 transition-colors group">
-              <ChevronDown className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
-            </div>
-          </motion.button>
         </div>
       </div>
     </section>

@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Twitter, Instagram, Youtube, Send, MapPin } from "lucide-react";
+import { Mail, Phone, Linkedin, Twitter, Instagram, Youtube, Send, MapPin, Loader2 } from "lucide-react";
 import { useState } from "react";
 import NMLogo from "./NMLogo";
+import { submitEmailToSheet, isValidEmail } from "@/lib/sheetApi";
+import { toast } from "@/components/ui/sonner";
 
 const socialLinks = [
   { name: "LinkedIn", icon: Linkedin },
@@ -13,13 +15,28 @@ const socialLinks = [
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    setSubmitError(null);
+    if (!isValidEmail(trimmed)) {
+      setSubmitError("Please enter a valid email address.");
+      return;
+    }
+    setIsSubmitting(true);
+    const result = await submitEmailToSheet(trimmed);
+    setIsSubmitting(false);
+    if (result.success) {
       setIsSubscribed(true);
       setEmail("");
+      toast.success("Email added to subscription list");
       setTimeout(() => setIsSubscribed(false), 3000);
+    } else {
+      setSubmitError("error" in result ? result.error : "Could not subscribe. Try again.");
     }
   };
 
@@ -72,18 +89,27 @@ const Footer = () => {
                 placeholder="Enter your email"
                 className="w-full px-4 py-2.5 pr-11 rounded-full bg-section-dark-foreground/5 border border-section-dark-foreground/20 text-section-dark-foreground placeholder:text-section-dark-foreground/40 text-sm focus:outline-none focus:border-blue-400/50 transition-colors"
                 required
+                disabled={isSubmitting}
+                pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                title="Please enter a valid email (e.g. name@example.com)"
               />
               <button 
                 type="submit"
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center hover:scale-105 transition-transform"
+                disabled={isSubmitting}
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center hover:scale-105 transition-transform disabled:opacity-70 disabled:pointer-events-none"
               >
-                {isSubscribed ? (
+                {isSubmitting ? (
+                  <Loader2 className="w-3.5 h-3.5 text-white animate-spin" />
+                ) : isSubscribed ? (
                   <span className="text-white text-xs">✓</span>
                 ) : (
                   <Send className="w-3.5 h-3.5 text-white" />
                 )}
               </button>
             </form>
+            {submitError && (
+              <p className="mt-2 text-center text-section-dark-foreground/70 text-xs">{submitError}</p>
+            )}
           </motion.div>
 
           {/* Middle Row: Contact + Social + Location */}

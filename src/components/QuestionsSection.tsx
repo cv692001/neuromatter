@@ -1,21 +1,38 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const questions = [
-  "How do we make our products stand out at stores?",
-  "Which product to include in the next line extension?",
-  "What media buy will be most effective for our ad?",
-  "Which brand interactions build subconscious trust or doubt?",
-  "What makes for the most effective sonic branding?",
-  "What is the best way to get users most engaged?",
   "What causes last-minute consumer hesitation?",
   "Which brand promise speaks best to our consumer?",
+  "Is the brand actually being processed, or just the entertainment?",
+  "Which element is building resistance in consumer's buying process?",
+  "Where are consumers confused, overloaded, or cognitively fatigued?",
+  "Does this creative build memory, or will it be forgotten tomorrow?",
+  'Why did a "well-tested" campaign fail in-market?',
+  "Which scene, message, or frame actually drives purchase intent?",
 ];
+
+const AUTOPLAY_DELAY_MS = 4000;
 
 const QuestionsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [api, setApi] = useState<CarouselApi>(undefined);
+
+  useEffect(() => {
+    if (!api) return;
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, AUTOPLAY_DELAY_MS);
+    return () => clearInterval(interval);
+  }, [api]);
 
   return (
     <section id="capabilities" className="section-padding bg-background">
@@ -25,45 +42,36 @@ const QuestionsSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <h2 className="heading-lg text-foreground max-w-4xl mx-auto">
-            When our tech meets your consumer,{" "}
-            <span className="block">the possibilities are limitless.</span>
+          <h2 className="heading-lg text-foreground max-w-4xl mx-auto text-center">
+            <span className="whitespace-nowrap">Where science meets consumer insight,</span>{" "}
+            <span className="block">possibilities are limitless</span>
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {questions.map((question, index) => (
-            <QuestionCard key={index} question={question} index={index} />
-          ))}
-        </div>
+        <Carousel
+          opts={{ loop: true, align: "start" }}
+          setApi={setApi}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {questions.map((question, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/4"
+              >
+                <div className="bg-card p-4 md:p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-border h-full flex items-center justify-center min-h-[100px]">
+                  <p className="text-card-foreground text-sm md:text-base font-medium text-center leading-relaxed">
+                    {question}
+                  </p>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
-  );
-};
-
-interface QuestionCardProps {
-  question: string;
-  index: number;
-}
-
-const QuestionCard = ({ question, index }: QuestionCardProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-30px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-card p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow card-hover border border-border h-full flex items-center justify-center min-h-[120px]"
-    >
-      <p className="text-card-foreground text-sm md:text-base font-medium text-center leading-relaxed">
-        {question}
-      </p>
-    </motion.div>
   );
 };
 

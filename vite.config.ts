@@ -8,6 +8,16 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      // Avoid CORS when submitting email to Google Apps Script from localhost
+      "/api/sheet-submit": {
+        target: "https://script.google.com",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) =>
+          "/macros/s/AKfycbzOA9q5EiV3sW_4rWud_Y2XhFpMSOmlel34rY1hHI8aS5B9WbfzJWwZw-qpjL7SSB1hDQ/exec",
+      },
+    },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

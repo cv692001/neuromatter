@@ -5,18 +5,6 @@ import NMLogo from "./NMLogo";
 
 const navItems = [
   { name: "Capabilities", href: "#capabilities" },
-  { 
-    name: "Offerings", 
-    href: "#offerings",
-    hasDropdown: true,
-    dropdownItems: [
-      { name: "Consumer Research", href: "#consumer-research", description: "Deep insights into consumer behavior" },
-      { name: "Ad Testing", href: "#ad-testing", description: "Measure ad effectiveness with neuroscience" },
-      { name: "Brand Strategy", href: "#brand-strategy", description: "Build stronger brand connections" },
-      { name: "Content Optimization", href: "#content-optimization", description: "Maximize content engagement" },
-      { name: "UX Research", href: "#ux-research", description: "Enhance user experiences" },
-    ]
-  },
   { name: "Work", href: "#work" },
   { name: "Difference", href: "#difference" },
   { name: "Technology", href: "#technology" },
