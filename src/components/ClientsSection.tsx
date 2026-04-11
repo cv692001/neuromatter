@@ -58,13 +58,10 @@ const ClientsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="heading-lg text-foreground">
-            Use the same methods{" "}
-            <span className="block">that top brands rely on</span>
+          <h2 className="heading-lg text-foreground max-w-4xl mx-auto">
+            How Top Brands Use Neuromarketing{" "}
+            <span className="block">to Influence Decisions</span>
           </h2>
-          <p className="body-md text-muted-foreground mt-6 max-w-2xl mx-auto">
-            Leading brands connect with their consumers at a subconscious level to influence their decision making
-          </p>
         </motion.div>
 
         {/* Client Cards Grid */}

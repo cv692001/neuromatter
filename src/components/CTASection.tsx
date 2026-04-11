@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import EmailCaptureBar from "./EmailCaptureBar";
 
 const CTASection = () => {
   const ref = useRef(null);
@@ -34,33 +35,15 @@ const CTASection = () => {
               <span className="text-white/80 text-sm font-medium">Ready to unlock consumer insights?</span>
             </motion.div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              See what we can do for you.
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-wide">
+              JOIN THE WAITLIST TODAY
             </h2>
             
             <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
-              Transform your marketing strategy with neuroscience-backed insights that reveal what truly drives consumer decisions.
+              Enter your details below &amp; our team will contact you shortly
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-full hover:bg-gray-100 transition-colors"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Get Started
-                <ArrowRight className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="#capabilities"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-colors"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Learn More
-              </motion.a>
-            </div>
+
+            <EmailCaptureBar variant="lightOnDark" className="max-w-md" showLabel={false} />
           </div>
         </motion.div>
       </div>

@@ -12,7 +12,6 @@ const questions = [
   "What causes last-minute consumer hesitation?",
   "Which brand promise speaks best to our consumer?",
   "Is the brand actually being processed, or just the entertainment?",
-  "Which element is building resistance in consumer's buying process?",
   "Where are consumers confused, overloaded, or cognitively fatigued?",
   "Does this creative build memory, or will it be forgotten tomorrow?",
   'Why did a "well-tested" campaign fail in-market?',
@@ -45,8 +44,8 @@ const QuestionsSection = () => {
           className="text-center mb-10"
         >
           <h2 className="heading-lg text-foreground max-w-4xl mx-auto text-center">
-            <span className="whitespace-nowrap">Where science meets consumer insight,</span>{" "}
-            <span className="block">possibilities are limitless</span>
+            <span className="block">What Was Once a Mystery,</span>
+            <span className="block">Now measured with Neuromarketing</span>
           </h2>
         </motion.div>
 

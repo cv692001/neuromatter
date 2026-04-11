@@ -1,45 +1,22 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Twitter, Instagram, Youtube, Send, MapPin, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { Mail, Phone, Linkedin, Instagram, MapPin } from "lucide-react";
 import NMLogo from "./NMLogo";
-import { submitEmailToSheet, isValidEmail } from "@/lib/sheetApi";
-import { toast } from "@/components/ui/sonner";
+import EmailCaptureBar from "./EmailCaptureBar";
 
 const socialLinks = [
-  { name: "LinkedIn", icon: Linkedin },
-  { name: "Twitter", icon: Twitter },
-  { name: "Instagram", icon: Instagram },
-  { name: "YouTube", icon: Youtube },
+  {
+    name: "LinkedIn",
+    icon: Linkedin,
+    href: "https://in.linkedin.com/company/neuromatter",
+  },
+  {
+    name: "Instagram",
+    icon: Instagram,
+    href: "https://www.instagram.com/neuro_matter/",
+  },
 ];
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const trimmed = email.trim();
-    if (!trimmed) return;
-    setSubmitError(null);
-    if (!isValidEmail(trimmed)) {
-      setSubmitError("Please enter a valid email address.");
-      return;
-    }
-    setIsSubmitting(true);
-    const result = await submitEmailToSheet(trimmed);
-    setIsSubmitting(false);
-    if (result.success) {
-      setIsSubscribed(true);
-      setEmail("");
-      toast.success("Email added to subscription list");
-      setTimeout(() => setIsSubscribed(false), 3000);
-    } else {
-      setSubmitError("error" in result ? result.error : "Could not subscribe. Try again.");
-    }
-  };
-
   return (
     <footer id="contact" className="bg-section-dark overflow-hidden">
       {/* Main Content */}
@@ -70,46 +47,14 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Stay Updated - Compact */}
-          <motion.div 
-            className="max-w-sm mx-auto mb-8"
+          <motion.div
+            className="mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-section-dark-foreground/60 text-xs uppercase tracking-widest mb-3 text-center">
-              Stay Updated
-            </h3>
-            <form onSubmit={handleSubscribe} className="relative">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full px-4 py-2.5 pr-11 rounded-full bg-section-dark-foreground/5 border border-section-dark-foreground/20 text-section-dark-foreground placeholder:text-section-dark-foreground/40 text-sm focus:outline-none focus:border-blue-400/50 transition-colors"
-                required
-                disabled={isSubmitting}
-                pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
-                title="Please enter a valid email (e.g. name@example.com)"
-              />
-              <button 
-                type="submit"
-                disabled={isSubmitting}
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center hover:scale-105 transition-transform disabled:opacity-70 disabled:pointer-events-none"
-              >
-                {isSubmitting ? (
-                  <Loader2 className="w-3.5 h-3.5 text-white animate-spin" />
-                ) : isSubscribed ? (
-                  <span className="text-white text-xs">✓</span>
-                ) : (
-                  <Send className="w-3.5 h-3.5 text-white" />
-                )}
-              </button>
-            </form>
-            {submitError && (
-              <p className="mt-2 text-center text-section-dark-foreground/70 text-xs">{submitError}</p>
-            )}
+            <EmailCaptureBar />
           </motion.div>
 
           {/* Middle Row: Contact + Social + Location */}
@@ -142,14 +87,18 @@ const Footer = () => {
             {/* Social Links - Compact */}
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
-                <motion.div
+                <motion.a
                   key={social.name}
-                  className="w-9 h-9 rounded-full bg-section-dark-foreground/5 border border-section-dark-foreground/10 flex items-center justify-center hover:bg-section-dark-foreground/10 hover:border-section-dark-foreground/30 transition-all group cursor-pointer"
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="w-9 h-9 rounded-full bg-section-dark-foreground/5 border border-section-dark-foreground/10 flex items-center justify-center hover:bg-section-dark-foreground/10 hover:border-section-dark-foreground/30 transition-all group"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <social.icon className="w-4 h-4 text-section-dark-foreground/60 group-hover:text-section-dark-foreground transition-colors" />
-                </motion.div>
+                </motion.a>
               ))}
             </div>
 

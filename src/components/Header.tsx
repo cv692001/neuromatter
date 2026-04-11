@@ -8,7 +8,7 @@ const navItems = [
   { name: "Work", href: "#work" },
   { name: "Difference", href: "#difference" },
   { name: "Technology", href: "#technology" },
-  { name: "News", href: "#news" },
+  { name: "Know the Process", href: "#news" },
 ];
 
 const Header = () => {

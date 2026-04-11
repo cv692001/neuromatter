@@ -33,9 +33,9 @@ const TestimonialSection = () => {
           </div>
           
           <p className="text-section-dark-foreground/80 body-md max-w-2xl mx-auto text-center text-balance">
-            That's precisely what neuromarketing helps decode! The emotional and subconscious 
-            reactions that drive real consumer choice, replacing intuition & gut instinct with 
-            pure facts and evidence-based decision-making for brand leaders.
+            That&apos;s precisely what neuromarketing decodes! You understand the emotional and
+            subconscious reactions behind your consumer&apos;s decisions, and align your branding
+            with it.
           </p>
         </motion.div>
       </div>
