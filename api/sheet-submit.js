@@ -1,5 +1,5 @@
 /**
- * Vercel serverless proxy for Google Apps Script (email to sheet).
+ * Vercel serverless proxy for Google Apps Script (contact form to sheet).
  * Avoids CORS when the frontend on Vercel calls this same-origin API.
  */
 const DEFAULT_SCRIPT_URL =
@@ -13,7 +13,10 @@ export default async function handler(req, res) {
 
   const scriptUrl = process.env.GOOGLE_SHEET_SCRIPT_URL || DEFAULT_SCRIPT_URL;
   const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+
+  const name = body.name && String(body.name).trim();
   const email = body.email && String(body.email).trim();
+  const phone = body.phone && String(body.phone).trim();
 
   if (!email) {
     return res.status(400).json({ success: false, error: "Email is required." });
@@ -23,7 +26,7 @@ export default async function handler(req, res) {
     const response = await fetch(scriptUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ name: name || "", email, phone: phone || "" }),
     });
     const data = await response.json().catch(() => ({}));
     res.status(response.ok ? 200 : response.status).json(data);

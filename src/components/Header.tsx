@@ -1,29 +1,43 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import NMLogo from "./NMLogo";
 
 const navItems = [
-  { name: "Capabilities", href: "#capabilities" },
-  { name: "Work", href: "#work" },
-  { name: "Difference", href: "#difference" },
+  { name: "What is Neuromarketing", href: "#about" },
+  { name: "Offerings", href: "/offerings", isRoute: true },
   { name: "Technology", href: "#technology" },
-  { name: "Know the Process", href: "#news" },
+  { name: "News", href: "/news", isRoute: true },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isRoute?: boolean) => {
     e.preventDefault();
-    const sectionId = href.replace("#", "");
-    const section = document.getElementById(sectionId);
-    
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+
+    if (isRoute) {
+      navigate(href);
+      setIsMenuOpen(false);
+      setActiveDropdown(null);
+      return;
     }
-    
+
+    const sectionId = href.replace("#", "");
+
+    if (location.pathname === "/") {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate(`/${href}`);
+    }
+
     setIsMenuOpen(false);
     setActiveDropdown(null);
   };
@@ -48,7 +62,7 @@ const Header = () => {
               >
                 <a
                   href={item.href}
-                  onClick={(e) => !item.hasDropdown && handleNavClick(e, item.href)}
+                  onClick={(e) => !item.hasDropdown && handleNavClick(e, item.href, item.isRoute)}
                   className="nav-link flex items-center gap-1"
                 >
                   {item.name}
@@ -142,7 +156,7 @@ const Header = () => {
                         e.preventDefault();
                         setActiveDropdown(activeDropdown === item.name ? null : item.name);
                       } else {
-                        handleNavClick(e, item.href);
+                        handleNavClick(e, item.href, item.isRoute);
                       }
                     }}
                   >

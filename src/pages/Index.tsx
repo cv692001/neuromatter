@@ -8,8 +8,6 @@ import TestimonialSection from "@/components/TestimonialSection";
 // import PeopleSection from "@/components/PeopleSection"; // Hidden for now
 import ClientsSection from "@/components/ClientsSection";
 // import SeenAroundSection from "@/components/SeenAroundSection"; // Hidden for now - photos to be added later
-import NewsSection from "@/components/NewsSection";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -25,8 +23,6 @@ const Index = () => {
       {/* <PeopleSection /> */}
       <ClientsSection />
       {/* <SeenAroundSection /> */}
-      <NewsSection />
-      <CTASection />
       <Footer />
     </main>
   );
