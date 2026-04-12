@@ -93,7 +93,7 @@ const OfferingsPage = () => {
               Our Offerings
             </h1>
             <p className="body-md text-section-dark-foreground/60 max-w-2xl mx-auto">
-              Three tiers of neuromarketing intelligence — from creative diagnostics to full market domination.
+              Three tiers of neuromarketing intelligence, from creative diagnostics to full market domination.
             </p>
           </motion.div>
 

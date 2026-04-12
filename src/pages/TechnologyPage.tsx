@@ -164,7 +164,7 @@ const TechnologyPage = () => {
               Technology
             </h1>
             <p className="body-md text-section-dark-foreground/60 max-w-2xl mx-auto">
-              Advanced brain imaging methodology for marketing applications — powered by three decades of neuroscience research.
+              Advanced brain imaging methodology for marketing applications, powered by three decades of neuroscience research.
             </p>
           </motion.div>
 
@@ -279,6 +279,8 @@ const TechnologyPage = () => {
                 </div>
               ))}
             </div>
+
+
           </div>
 
           {/* Performance Report & Actionable Recommendations */}
@@ -297,7 +299,7 @@ const TechnologyPage = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-section-dark-foreground/50 text-sm text-center max-w-2xl mx-auto mb-10 md:mb-14"
             >
-              Every engagement culminates in a comprehensive report — here's what you walk away with.
+              Every engagement culminates in a comprehensive report. Here's what you walk away with.
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">

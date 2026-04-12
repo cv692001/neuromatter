@@ -22,60 +22,60 @@ const Footer = () => {
       {/* Main Content */}
       <div className="px-6 md:px-12 lg:px-20 py-10 md:py-12">
         <div className="container-custom">
-          {/* Centered Brand Text */}
-          <motion.div 
-            className="flex justify-center mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block text-left">
-              <span className="text-section-dark-foreground/50 text-sm font-medium tracking-wide">
-                Powered by
-              </span>
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight mt-1">
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Neuromatter
+          {/* Brand + Waitlist — side by side */}
+          <div id="contact" className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center mb-10">
+            {/* Left: Brand Text */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-block">
+                <span className="text-section-dark-foreground/50 text-sm font-medium tracking-wide">
+                  Powered by
                 </span>
-              </div>
-              <div className="flex justify-end mt-1">
-                <span className="text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-                  Group
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Join the Waitlist */}
-          <motion.div
-            id="contact"
-            className="mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-10 md:p-14">
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl" />
-              </div>
-              <div className="relative z-10 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6">
-                  <Sparkles className="w-4 h-4 text-yellow-400" />
-                  <span className="text-white/80 text-sm font-medium">Ready to unlock consumer insights?</span>
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight mt-1">
+                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Neuromatter
+                  </span>
                 </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-wide">
-                  JOIN THE WAITLIST TODAY
-                </h2>
-                <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
-                  Enter your details below &amp; our team will contact you shortly
-                </p>
-                <EmailCaptureBar variant="lightOnDark" className="max-w-md" showLabel={false} />
+                <div className="text-right mt-1">
+                  <span className="text-4xl md:text-5xl lg:text-6xl font-bold leading-none tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+                    Group
+                  </span>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Right: Join the Waitlist */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8 md:p-10">
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500 rounded-full blur-3xl" />
+                  <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full blur-3xl" />
+                </div>
+                <div className="relative z-10 text-center">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-5">
+                    <Sparkles className="w-4 h-4 text-yellow-400" />
+                    <span className="text-white/80 text-sm font-medium">Ready to unlock consumer insights?</span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-wide">
+                    JOIN THE WAITLIST TODAY
+                  </h2>
+                  <p className="text-white/60 text-sm md:text-base mb-6">
+                    Enter your details below &amp; our team will contact you shortly
+                  </p>
+                  <EmailCaptureBar variant="lightOnDark" className="max-w-sm" showLabel={false} />
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           {/* Middle Row: Contact + Social + Location */}
           <motion.div 
