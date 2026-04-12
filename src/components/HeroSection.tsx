@@ -306,7 +306,7 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 mt-10"
           >
             <a 
-              href="#news" 
+              href="/technology" 
               className="inline-flex flex-col items-center justify-center text-center px-8 py-2.5 border-2 border-white/30 text-white font-medium rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300 hover:scale-105 min-w-0 leading-tight"
             >
               <span className="block">Know</span>
