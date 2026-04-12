@@ -7,7 +7,7 @@ import NMLogo from "./NMLogo";
 const navItems = [
   { name: "What is Neuromarketing", href: "#about" },
   { name: "Offerings", href: "/offerings", isRoute: true },
-  { name: "Technology", href: "#technology" },
+  { name: "Technology", href: "/technology", isRoute: true },
   { name: "News", href: "/news", isRoute: true },
 ];
 

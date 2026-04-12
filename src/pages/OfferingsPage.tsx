@@ -169,12 +169,12 @@ const OfferingsPage = () => {
             <p className="text-section-dark-foreground/50 text-sm mb-4">
               Ready to decode your consumers?
             </p>
-            <a
-              href="/#contact"
+            <button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               className="btn-primary bg-gradient-to-r from-indigo-500 to-purple-500 border-0 hover:opacity-90"
             >
               Get in Touch
-            </a>
+            </button>
           </motion.div>
         </div>
       </section>
