@@ -24,7 +24,9 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     Sitemap({
-      hostname: "https://www.neuromatter.in/",
+      hostname: "https://www.neuromatter.in",
+      OutDir: "dist",
+      generateRobotsTxt: true,
       dynamicRoutes: ["/", "/offerings", "/technology", "/news"],
       readable: true,
     }),
