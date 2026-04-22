@@ -2,7 +2,26 @@ import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Package, Layers, Crown, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
+import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+
+const offeringsFAQs = [
+  {
+    question: "Why are my ads getting clicks but no conversions?",
+    answer:
+      "Your ad grabbed attention—but something after that is breaking trust or clarity. Neuromarketing helps you find that exact drop-off point.",
+  },
+  {
+    question: "How much does neuromarketing cost in India?",
+    answer:
+      "It can start from around ₹50K for basic analysis and go up depending on depth. Some companies also offer smaller audits to get started without big investment.",
+  },
+  {
+    question: "Do I really need neuromarketing?",
+    answer:
+      "If you're spending on ads, branding, or a website—yes. Otherwise you're making decisions based on assumptions.",
+  },
+];
 
 const levels = [
   {
@@ -178,6 +197,8 @@ const OfferingsPage = () => {
           </motion.div>
         </div>
       </section>
+
+      <FAQSection items={offeringsFAQs} variant="dark" />
 
       <Footer />
     </main>
