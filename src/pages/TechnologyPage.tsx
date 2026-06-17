@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Video, Brain, Users, FileBarChart, ArrowRight, Gauge, Film, ListChecks } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 
 const components = [
   {
@@ -132,9 +133,7 @@ const TechnologyPage = () => {
   const frameworkInView = useInView(frameworkRef, { once: true, margin: "-50px" });
   const reportInView = useInView(reportRef, { once: true, margin: "-50px" });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useScrollToHash();
 
   return (
     <main className="min-h-screen">
@@ -170,10 +169,11 @@ const TechnologyPage = () => {
 
           {/* Section Heading */}
           <motion.h2
+            id="components"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-2xl md:text-3xl font-bold text-center text-section-dark-foreground mb-10 md:mb-14"
+            className="scroll-mt-24 text-2xl md:text-3xl font-bold text-center text-section-dark-foreground mb-10 md:mb-14"
           >
             The Components
           </motion.h2>
@@ -191,7 +191,7 @@ const TechnologyPage = () => {
           </div>
 
           {/* The Framework */}
-          <div ref={frameworkRef} className="mt-20 md:mt-28">
+          <div ref={frameworkRef} id="framework" className="scroll-mt-24 mt-20 md:mt-28">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={frameworkInView ? { opacity: 1, y: 0 } : {}}
@@ -284,7 +284,7 @@ const TechnologyPage = () => {
           </div>
 
           {/* Performance Report & Actionable Recommendations */}
-          <div ref={reportRef} className="mt-20 md:mt-28">
+          <div ref={reportRef} id="performance-report" className="scroll-mt-24 mt-20 md:mt-28">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={reportInView ? { opacity: 1, y: 0 } : {}}

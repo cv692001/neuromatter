@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Package, Layers, Crown, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import { useScrollToHash } from "@/hooks/useScrollToHash";
 
 const offeringsFAQs = [
   {
@@ -26,6 +27,7 @@ const offeringsFAQs = [
 const levels = [
   {
     level: 1,
+    id: "conversion-diagnostics",
     title: "Conversion Diagnostics",
     subtitle: "Evaluate & validate creative assets before they go live",
     icon: Package,
@@ -43,6 +45,7 @@ const levels = [
   },
   {
     level: 2,
+    id: "conversion-architecture",
     title: "Conversion Architecture",
     subtitle: "Architect high-converting digital experiences",
     icon: Layers,
@@ -60,6 +63,7 @@ const levels = [
   },
   {
     level: 3,
+    id: "market-command",
     title: "Market Command",
     subtitle: "Dominate your market with full-spectrum neuro strategy",
     icon: Crown,
@@ -80,9 +84,7 @@ const OfferingsPage = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useScrollToHash();
 
   return (
     <main className="min-h-screen">
@@ -121,10 +123,11 @@ const OfferingsPage = () => {
             {levels.map((level, index) => (
               <motion.div
                 key={level.level}
+                id={level.id}
                 initial={{ opacity: 0, y: 40 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                className={`rounded-2xl overflow-hidden border ${level.borderColor} bg-white/[0.03] backdrop-blur-sm flex flex-col hover:border-opacity-60 transition-all duration-300 group`}
+                className={`scroll-mt-24 rounded-2xl overflow-hidden border ${level.borderColor} bg-white/[0.03] backdrop-blur-sm flex flex-col hover:border-opacity-60 transition-all duration-300 group`}
               >
                 {/* Image Header */}
                 <div className="relative h-40 lg:h-44 overflow-hidden">

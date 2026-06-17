@@ -49,6 +49,7 @@ const FAQSection = ({ items, variant = "light" }: FAQSectionProps) => {
 
   return (
     <section
+      id="faq"
       className={`section-padding ${isDark ? "bg-section-dark" : "bg-background"}`}
     >
       <div className="container-custom">
