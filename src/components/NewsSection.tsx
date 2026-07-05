@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 
 // Featured article
@@ -10,6 +11,17 @@ const featuredArticle = {
   source: "Pen Paper Prachetan",
   sourceUrl: "https://www.penpaperprachetan.com/post/neurobranding-in-india-exploring-hidden-insights-and-emerging-trends-in-a-richly-diverse-market-d",
 };
+
+// Blog posts (internal, in-depth articles)
+const blogPosts = [
+  {
+    title:
+      "Top 5 Best Neuromarketing Agencies in India (2026 Edition): Top Companies Transforming Consumer Decision-Making",
+    excerpt:
+      "Most agencies guess. The best neuromarketing agencies in India measure your consumer's brain. Here are the top 5 in 2026, ranked by actual neuroscience, not hype.",
+    href: "/best-neuromarketing-agency-india",
+  },
+];
 
 // Other news articles
 const newsItems = [
@@ -51,7 +63,7 @@ const NewsSection = () => {
           className="text-center mb-10"
         >
           <h2 className="heading-lg text-foreground mb-4">
-            News & Insights
+            News & Blogs
           </h2>
           <p className="text-muted-foreground">
             Latest in neuromarketing
@@ -121,6 +133,46 @@ const NewsSection = () => {
                 </div>
               </div>
             </motion.a>
+          ))}
+        </div>
+
+        {/* Blogs */}
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-xl md:text-2xl font-bold text-foreground mt-14 mb-6"
+        >
+          Blogs
+        </motion.h3>
+
+        <div className="grid gap-4">
+          {blogPosts.map((post, index) => (
+            <motion.div
+              key={post.href}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+            >
+              <Link to={post.href} className="block group">
+                <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 p-6 md:p-8">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <span className="text-white/50 text-xs font-medium mb-2 block">
+                        Neuromatter Blog
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-white/60 text-sm">{post.excerpt}</p>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors flex-shrink-0">
+                      <ArrowUpRight className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

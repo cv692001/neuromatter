@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import OfferingsPage from "./pages/OfferingsPage";
 import TechnologyPage from "./pages/TechnologyPage";
 import NewsPage from "./pages/NewsPage";
+import BestNeuromarketingAgencyPage from "./pages/BestNeuromarketingAgencyPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,10 @@ const App = () => (
           <Route path="/offerings" element={<OfferingsPage />} />
           <Route path="/technology" element={<TechnologyPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route
+            path="/best-neuromarketing-agency-india"
+            element={<BestNeuromarketingAgencyPage />}
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
