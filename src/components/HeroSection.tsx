@@ -257,9 +257,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/60 text-sm md:text-base uppercase tracking-[0.3em] mb-6"
+            className="text-white/60 text-sm md:text-base tracking-wide mb-6"
           >
-            Neuroscience powered Branding Decisions
+            Get more Conversions from the same Budget
           </motion.p>
           
           <motion.div
@@ -303,21 +303,13 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 mt-10"
+            className="flex justify-center mt-10"
           >
-            <a 
-              href="/technology" 
-              className="inline-flex flex-col items-center justify-center text-center px-8 py-2.5 border-2 border-white/30 text-white font-medium rounded-full hover:border-white/60 hover:bg-white/10 transition-all duration-300 hover:scale-105 min-w-0 leading-tight"
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center text-center px-8 py-2.5 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all duration-300 hover:scale-105 leading-tight"
             >
-              <span className="block">Know</span>
-              <span className="block text-sm font-medium">the process</span>
-            </a>
-            <a 
-              href="#contact" 
-              className="inline-flex flex-col items-center justify-center text-center px-8 py-2.5 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all duration-300 min-w-0 leading-tight"
-            >
-              <span className="block">Schedule</span>
-              <span className="block text-sm font-medium">a call</span>
+              Contact us
             </a>
           </motion.div>
         </div>
