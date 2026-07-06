@@ -57,6 +57,7 @@ const agencies = [
   {
     rank: 2,
     name: "Ipsos",
+    externalLink: "https://www.ipsos.com/en-in",
     body: [
       "Ipsos is one of the world's largest consumer research organisations and their India practice includes a well-developed neuromarketing capability. They use facial emotion coding, eye-tracking, and implicit association testing to measure subconscious consumer responses to advertising, packaging, and retail environments.",
       "For brands that need neuromarketing findings to sit alongside segmentation data, brand equity tracking, and campaign measurement, Ipsos India offers a connected research ecosystem that few specialist agencies can match. Their methodology meets global standards, which matters for multinational brands that need findings to be comparable across markets.",
@@ -69,6 +70,7 @@ const agencies = [
   {
     rank: 3,
     name: "Neurosensum",
+    externalLink: "https://neurosensum.com/",
     body: [
       "Neurosensum is a leading consumer neuroscience and market research company with a strong presence across Asia, including a growing footprint in India. They combine EEG, eye-tracking, facial emotion analysis, and implicit association testing with a technology platform built for speed, allowing brands to get neuromarketing insights faster than traditional research timelines typically allow.",
       "What sets Neurosensum apart is scale. They serve brands across multiple Asian markets, which means Indian businesses with regional or pan-Asia ambitions can run consistent neuromarketing studies across borders with a single partner. Their client base spans some of the largest FMCG, food and beverage, personal care, and e-commerce companies operating in the region.",
@@ -80,6 +82,7 @@ const agencies = [
   {
     rank: 4,
     name: "Nielsen",
+    externalLink: "https://www.nielsen.com/",
     body: [
       "Nielsen's Consumer Neuroscience practice operates in India through its market research infrastructure, with a neuroscience lab established in Mumbai. They use EEG, eye-tracking, galvanic skin response, and facial coding to measure how audiences engage with advertising content before it goes live.",
       "Their core value for Indian brands lies in pre-launch ad testing at scale. For a brand spending significantly on television or digital media, running a campaign with underperforming creative is an expensive mistake. Nielsen's neuromarketing testing provides a scientifically validated check before budget is committed to media.",
@@ -92,6 +95,7 @@ const agencies = [
   {
     rank: 5,
     name: "Kantar",
+    externalLink: "https://www.kantar.com/",
     body: [
       "Kantar is a global research and consulting group with a strong India presence. Their neuromarketing capability uses facial coding, implicit response measures, and biometric tools to assess how advertising and brand communications perform at a subconscious level. What makes Kantar particularly useful is their ability to connect these neuroscience findings to their extensive brand equity databases.",
       "This means Indian brands working with Kantar can understand not just whether an ad generates emotional engagement, but how that emotional performance connects to salience, differentiation, and loyalty over time. For brands that are building long-term equity and need neuromarketing to inform sustained brand strategy rather than individual campaigns, Kantar's integrated approach is difficult to match.",
@@ -302,9 +306,14 @@ const BestNeuromarketingAgencyPage = () => {
 
           <H3>
             1.{" "}
-            <Link to="/" className="text-primary hover:underline">
+            <a
+              href="https://www.neuromatter.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
               Neuromatter
-            </Link>
+            </a>
           </H3>
           <P>
             Neuromatter is the most scientifically advanced neuromarketing
@@ -375,7 +384,8 @@ const BestNeuromarketingAgencyPage = () => {
             <strong className="font-semibold text-foreground">Technology:</strong>{" "}
             EEG, BCI, Neuroscience Analytics, Multi-Regional Brain Activity
             Visualisation
-            <br />
+          </P>
+          <P>
             <strong className="font-semibold text-foreground">Best for:</strong>{" "}
             Consumer brands, FMCG, D2C, advertising agencies, startups, Beauty
             brand
@@ -384,7 +394,19 @@ const BestNeuromarketingAgencyPage = () => {
           {agencies.map((agency) => (
             <div key={agency.name}>
               <H3>
-                {agency.rank}. {agency.name}
+                {agency.rank}.{" "}
+                {agency.externalLink ? (
+                  <a
+                    href={agency.externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {agency.name}
+                  </a>
+                ) : (
+                  agency.name
+                )}
               </H3>
               {agency.body.map((paragraph, idx) => (
                 <P key={idx}>{paragraph}</P>
@@ -394,7 +416,8 @@ const BestNeuromarketingAgencyPage = () => {
                   Key strength:
                 </strong>{" "}
                 {agency.keyStrength}
-                <br />
+              </P>
+              <P>
                 <strong className="font-semibold text-foreground">
                   Best for:
                 </strong>{" "}
