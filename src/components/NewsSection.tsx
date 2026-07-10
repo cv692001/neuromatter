@@ -21,6 +21,13 @@ const blogPosts = [
       "Most agencies guess. The best neuromarketing agencies in India measure your consumer's brain. Here are the top 5 in 2026, ranked by actual neuroscience, not hype.",
     href: "/best-neuromarketing-agency-india",
   },
+  {
+    title:
+      "Top 5 Best Conversion Rate Optimization Agencies in India Using Consumer Psychology Strategies",
+    excerpt:
+      "Most CRO agencies test buttons. The best conversion rate optimization agencies in India rewire how your visitor's brain decides. See our 2026 ranked list.",
+    href: "/best-conversion-rate-optimization-agencies-india",
+  },
 ];
 
 // Other news articles

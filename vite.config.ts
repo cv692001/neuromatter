@@ -33,6 +33,7 @@ export default defineConfig(({ mode }) => ({
         "/technology",
         "/news",
         "/best-neuromarketing-agency-india",
+        "/best-conversion-rate-optimization-agencies-india",
       ],
       readable: true,
     }),

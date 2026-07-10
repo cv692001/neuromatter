@@ -8,6 +8,7 @@ import OfferingsPage from "./pages/OfferingsPage";
 import TechnologyPage from "./pages/TechnologyPage";
 import NewsPage from "./pages/NewsPage";
 import BestNeuromarketingAgencyPage from "./pages/BestNeuromarketingAgencyPage";
+import BestCROAgencyPage from "./pages/BestCROAgencyPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
@@ -28,6 +29,10 @@ const App = () => (
           <Route
             path="/best-neuromarketing-agency-india"
             element={<BestNeuromarketingAgencyPage />}
+          />
+          <Route
+            path="/best-conversion-rate-optimization-agencies-india"
+            element={<BestCROAgencyPage />}
           />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
