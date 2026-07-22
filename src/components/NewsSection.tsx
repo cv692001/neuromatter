@@ -28,6 +28,13 @@ const blogPosts = [
       "Most CRO agencies test buttons. The best conversion rate optimization agencies in India rewire how your visitor's brain decides. See our 2026 ranked list.",
     href: "/best-conversion-rate-optimization-agencies-india",
   },
+  {
+    title:
+      "High-Converting CRO Strategy Powered by Neuroscience and Psychology",
+    excerpt:
+      "Discover a proven conversion rate optimization strategy using neuroscience, consumer psychology, and behavioral science to increase conversions without increasing your spend.",
+    href: "/conversion-rate-optimization-strategy",
+  },
 ];
 
 // Other news articles

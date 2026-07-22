@@ -9,6 +9,7 @@ import TechnologyPage from "./pages/TechnologyPage";
 import NewsPage from "./pages/NewsPage";
 import BestNeuromarketingAgencyPage from "./pages/BestNeuromarketingAgencyPage";
 import BestCROAgencyPage from "./pages/BestCROAgencyPage";
+import CROStrategyPage from "./pages/CROStrategyPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
@@ -33,6 +34,10 @@ const App = () => (
           <Route
             path="/best-conversion-rate-optimization-agencies-india"
             element={<BestCROAgencyPage />}
+          />
+          <Route
+            path="/conversion-rate-optimization-strategy"
+            element={<CROStrategyPage />}
           />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
