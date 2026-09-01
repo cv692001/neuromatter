@@ -58,18 +58,24 @@ export const PAGES: PageSeo[] = [
   {
     path: "/offerings",
     title: "Neuromarketing Services in India | Neuromatter Offerings",
+    description:
+      "Three tiers of neuromarketing services: pre-launch creative diagnostics, conversion architecture for pricing and product pages, and full-spectrum launch strategy.",
     ogType: "website",
     inSitemap: true,
   },
   {
     path: "/technology",
     title: "EEG Neuromarketing Technology & Brain Imaging | Neuromatter",
+    description:
+      "How we measure brain response: medical-grade Emotiv Insight EEG, Brainviz multi-regional activity mapping, and EmotivPRO analysis translated into marketing decisions.",
     ogType: "website",
     inSitemap: true,
   },
   {
     path: "/news",
     title: "Neuromarketing News, Research & Blog | Neuromatter",
+    description:
+      "Neuromarketing news, research and in-depth articles on consumer psychology, CRO and behavioral science from Neuromatter's team in India.",
     ogType: "website",
     inSitemap: true,
   },
