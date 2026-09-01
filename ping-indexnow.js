@@ -1,19 +1,36 @@
+import fs from "node:fs";
 import https from "node:https";
+import path from "node:path";
+
+// Read the URL list straight out of the sitemap the build just generated, so a
+// new page only has to be added to src/lib/site-config.ts to be submitted here.
+const SITEMAP_PATH = path.resolve(process.cwd(), "dist", "sitemap.xml");
+
+if (!fs.existsSync(SITEMAP_PATH)) {
+  console.error(`IndexNow: ${SITEMAP_PATH} not found. Run the build first.`);
+  process.exit(1);
+}
+
+const sitemap = fs.readFileSync(SITEMAP_PATH, "utf8");
+const urlList = [
+  ...new Set(
+    [...sitemap.matchAll(/<loc>\s*([\s\S]*?)\s*<\/loc>/g)].map((m) => m[1].trim())
+  ),
+];
+
+if (urlList.length === 0) {
+  console.error("IndexNow: no <loc> entries found in sitemap.xml.");
+  process.exit(1);
+}
+
+console.log(`IndexNow: submitting ${urlList.length} URLs.`);
 
 const payload = JSON.stringify({
-  host: "neuromatter.in",
+  host: "www.neuromatter.in",
   key: "98623e2cf0754eef8c8aed0679141bc5",
-  keyLocation: "https://neuromatter.in/98623e2cf0754eef8c8aed0679141bc5.txt",
-  urlList: [
-    "https://www.neuromatter.in/",
-    "https://www.neuromatter.in/offerings",
-    "https://www.neuromatter.in/technology",
-    "https://www.neuromatter.in/news",
-    "https://www.neuromatter.in/best-neuromarketing-agency-india",
-    "https://www.neuromatter.in/best-conversion-rate-optimization-agencies-india",
-    "https://www.neuromatter.in/conversion-rate-optimization-strategy",
-    "https://www.neuromatter.in/how-to-increase-roas-meta-ads",
-  ],
+  keyLocation:
+    "https://www.neuromatter.in/98623e2cf0754eef8c8aed0679141bc5.txt",
+  urlList,
 });
 
 const options = {

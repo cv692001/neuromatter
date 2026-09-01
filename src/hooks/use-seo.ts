@@ -1,10 +1,19 @@
 import { useEffect } from "react";
 
+import { OG_IMAGE, absoluteUrl } from "@/lib/site-config";
+
 interface SEOOptions {
-  title: string;
-  description: string;
+  /**
+   * Route path (e.g. "/how-to-increase-roas-meta-ads"). The canonical and
+   * og:url are derived from it against the configured origin, so a page can no
+   * longer ship a hardcoded — or wrong-domain — absolute URL.
+   */
+  path: string;
+  /** Omit to keep the site-wide default already in the served HTML. */
+  title?: string;
+  description?: string;
   keywords?: string;
-  canonical?: string;
+  ogType?: "website" | "article";
 }
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
@@ -17,39 +26,49 @@ function setMeta(attr: "name" | "property", key: string, content: string) {
   el.setAttribute("content", content);
 }
 
-export function useSEO({ title, description, keywords, canonical }: SEOOptions) {
+function setCanonical(href: string) {
+  let el = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", "canonical");
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", href);
+}
+
+export function useSEO({
+  path,
+  title,
+  description,
+  keywords,
+  ogType = "website",
+}: SEOOptions) {
   useEffect(() => {
-    const previousTitle = document.title;
-    document.title = title;
+    const canonical = absoluteUrl(path);
 
-    setMeta("name", "description", description);
-    setMeta("property", "og:title", title);
-    setMeta("property", "og:description", description);
-    setMeta("name", "twitter:title", title);
-    setMeta("name", "twitter:description", description);
+    setCanonical(canonical);
+    setMeta("property", "og:url", canonical);
+    setMeta("property", "og:type", ogType);
+    setMeta("property", "og:image", OG_IMAGE);
+    setMeta("name", "twitter:image", OG_IMAGE);
 
+    if (title) {
+      document.title = title;
+      setMeta("property", "og:title", title);
+      setMeta("name", "twitter:title", title);
+    }
+    if (description) {
+      setMeta("name", "description", description);
+      setMeta("property", "og:description", description);
+      setMeta("name", "twitter:description", description);
+    }
     if (keywords) {
       setMeta("name", "keywords", keywords);
     }
-
-    let canonicalEl = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    const previousCanonical = canonicalEl?.getAttribute("href") ?? null;
-    if (canonical) {
-      if (!canonicalEl) {
-        canonicalEl = document.createElement("link");
-        canonicalEl.setAttribute("rel", "canonical");
-        document.head.appendChild(canonicalEl);
-      }
-      canonicalEl.setAttribute("href", canonical);
-    }
-
-    return () => {
-      document.title = previousTitle;
-      if (canonical && canonicalEl && previousCanonical !== null) {
-        canonicalEl.setAttribute("href", previousCanonical);
-      }
-    };
-  }, [title, description, keywords, canonical]);
+    // No cleanup: each route sets its own canonical on mount, and restoring the
+    // previous page's canonical during a transition briefly advertised the
+    // wrong URL for the page being entered.
+  }, [path, title, description, keywords, ogType]);
 }
 
 export function useJsonLd(id: string, data: object) {

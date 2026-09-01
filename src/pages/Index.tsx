@@ -7,8 +7,12 @@ import TechBehindSection from "@/components/TechBehindSection";
 import ClientsSection from "@/components/ClientsSection";
 // import SeenAroundSection from "@/components/SeenAroundSection"; // Hidden for now - photos to be added later
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/use-seo";
+import { PAGE_SEO } from "@/lib/site-config";
 
 const Index = () => {
+  useSEO(PAGE_SEO["/"]);
+
   return (
     <main className="min-h-screen">
       <Header />

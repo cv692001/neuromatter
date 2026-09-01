@@ -5,8 +5,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import { useSEO, useJsonLd } from "@/hooks/use-seo";
+import { OG_IMAGE, PAGE_SEO, absoluteUrl } from "@/lib/site-config";
 
-const PAGE_URL = "https://www.neuromatter.in/best-neuromarketing-agency-india";
+const PAGE_PATH = "/best-neuromarketing-agency-india";
+const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faqs = [
   {
@@ -160,14 +162,7 @@ const BestNeuromarketingAgencyPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useSEO({
-    title: "Who Is the Best Neuromarketing Agency in India in 2026? Our Ranked List",
-    description:
-      "Most agencies guess. The best neuromarketing agencies in India measure your consumer's brain. Here are the top 5 in 2026, ranked by actual neuroscience, not hype.",
-    keywords:
-      "Best neuromarketing agency in India, neuromarketing agency, consumer neuroscience agency, EEG marketing research, neuromarketing services, neuroscience marketing agency, consumer behavior research, brain-based marketing, advertising neuroscience",
-    canonical: PAGE_URL,
-  });
+  useSEO(PAGE_SEO[PAGE_PATH]);
 
   useJsonLd("blog-post-best-neuromarketing-agency", {
     "@context": "https://schema.org",
@@ -185,7 +180,7 @@ const BestNeuromarketingAgencyPage = () => {
       name: "Neuromatter",
       logo: {
         "@type": "ImageObject",
-        url: "https://neuromatter.vercel.app/neuromatter-logo.png",
+        url: OG_IMAGE,
       },
     },
     mainEntityOfPage: {

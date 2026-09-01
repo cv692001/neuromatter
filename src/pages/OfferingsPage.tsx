@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
+import { useSEO } from "@/hooks/use-seo";
+import { PAGE_SEO } from "@/lib/site-config";
 
 const offeringsFAQs = [
   {
@@ -105,6 +107,7 @@ const OfferingsPage = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useScrollToHash();
+  useSEO(PAGE_SEO["/offerings"]);
 
   return (
     <main className="min-h-screen">

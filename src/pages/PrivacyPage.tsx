@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/use-seo";
+import { PAGE_SEO } from "@/lib/site-config";
 
 const PrivacyPage = () => {
+  useSEO(PAGE_SEO["/privacy"]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -81,10 +85,10 @@ const PrivacyPage = () => {
                   You may request access to, correction of, or deletion of your
                   personal information. To exercise these rights, please contact us at{" "}
                   <a
-                    href="mailto:Contact@neuromatter.com"
+                    href="mailto:contact@neuromatter.in"
                     className="text-primary underline underline-offset-4"
                   >
-                    Contact@neuromatter.com
+                    contact@neuromatter.in
                   </a>
                   .
                 </p>
@@ -98,10 +102,10 @@ const PrivacyPage = () => {
                   If you have any questions about this Privacy Policy, reach out to us
                   at{" "}
                   <a
-                    href="mailto:Contact@neuromatter.com"
+                    href="mailto:contact@neuromatter.in"
                     className="text-primary underline underline-offset-4"
                   >
-                    Contact@neuromatter.com
+                    contact@neuromatter.in
                   </a>
                   .
                 </p>

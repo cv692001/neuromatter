@@ -208,11 +208,11 @@ const Footer = () => {
             {/* Contact Info - Compact */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <a
-                href="mailto:Contact@neuromatter.com"
+                href="mailto:contact@neuromatter.in"
                 className="group inline-flex items-center gap-2 text-sm font-medium text-section-dark-foreground hover:text-blue-400 transition-colors"
               >
                 <Mail className="w-4 h-4 opacity-60" />
-                Contact@neuromatter.com
+                contact@neuromatter.in
               </a>
               <span className="hidden sm:block text-section-dark-foreground/20">|</span>
               <a

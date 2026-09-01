@@ -4,9 +4,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import { useSEO, useJsonLd } from "@/hooks/use-seo";
+import { OG_IMAGE, PAGE_SEO, absoluteUrl } from "@/lib/site-config";
 
-const PAGE_URL =
-  "https://www.neuromatter.in/best-conversion-rate-optimization-agencies-india";
+const PAGE_PATH = "/best-conversion-rate-optimization-agencies-india";
+const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faqs = [
   {
@@ -161,15 +162,7 @@ const BestCROAgencyPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useSEO({
-    title:
-      "Top 5 Best Conversion Rate Optimization Agencies in India Using Consumer Psychology",
-    description:
-      "Most CRO agencies test buttons. The best conversion rate optimization agencies in India rewire how your visitor's brain decides. See our 2026 ranked list.",
-    keywords:
-      "Best conversion rate optimization agency in India, CRO agency, conversion rate optimization, consumer psychology, neuromarketing agency, website conversion optimization, CRO experts, conversion optimization company",
-    canonical: PAGE_URL,
-  });
+  useSEO(PAGE_SEO[PAGE_PATH]);
 
   useJsonLd("blog-post-best-cro-agency", {
     "@context": "https://schema.org",
@@ -187,7 +180,7 @@ const BestCROAgencyPage = () => {
       name: "Neuromatter",
       logo: {
         "@type": "ImageObject",
-        url: "https://neuromatter.vercel.app/neuromatter-logo.png",
+        url: OG_IMAGE,
       },
     },
     mainEntityOfPage: {

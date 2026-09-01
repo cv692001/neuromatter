@@ -4,9 +4,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import { useSEO, useJsonLd } from "@/hooks/use-seo";
+import { OG_IMAGE, PAGE_SEO, absoluteUrl } from "@/lib/site-config";
 
-const PAGE_URL =
-  "https://www.neuromatter.in/conversion-rate-optimization-strategy";
+const PAGE_PATH = "/conversion-rate-optimization-strategy";
+const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faqs = [
   {
@@ -69,15 +70,7 @@ const CROStrategyPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useSEO({
-    title:
-      "Conversion Rate Optimization Strategy Powered by Neuroscience & Psychology",
-    description:
-      "Discover a proven conversion rate optimization strategy using neuroscience, consumer psychology, and behavioral science to increase conversions, and turn more visitors into customers.",
-    keywords:
-      "conversion rate optimization strategy, CRO strategy, conversion rate optimization, website conversion optimization, neuroscience marketing, consumer psychology, behavioral psychology, neuromarketing, conversion optimization strategy",
-    canonical: PAGE_URL,
-  });
+  useSEO(PAGE_SEO[PAGE_PATH]);
 
   useJsonLd("blog-post-cro-strategy", {
     "@context": "https://schema.org",
@@ -95,7 +88,7 @@ const CROStrategyPage = () => {
       name: "Neuromatter",
       logo: {
         "@type": "ImageObject",
-        url: "https://neuromatter.vercel.app/neuromatter-logo.png",
+        url: OG_IMAGE,
       },
     },
     mainEntityOfPage: {

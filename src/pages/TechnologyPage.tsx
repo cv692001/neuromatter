@@ -4,6 +4,8 @@ import { Video, Brain, Users, FileBarChart, ArrowRight, Gauge, Film, ListChecks 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useScrollToHash } from "@/hooks/useScrollToHash";
+import { useSEO } from "@/hooks/use-seo";
+import { PAGE_SEO } from "@/lib/site-config";
 
 const components = [
   {
@@ -134,6 +136,7 @@ const TechnologyPage = () => {
   const reportInView = useInView(reportRef, { once: true, margin: "-50px" });
 
   useScrollToHash();
+  useSEO(PAGE_SEO["/technology"]);
 
   return (
     <main className="min-h-screen">

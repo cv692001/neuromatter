@@ -4,8 +4,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FAQSection from "@/components/FAQSection";
 import { useSEO, useJsonLd } from "@/hooks/use-seo";
+import { OG_IMAGE, PAGE_SEO, absoluteUrl } from "@/lib/site-config";
 
-const PAGE_URL = "https://www.neuromatter.in/how-to-increase-roas-meta-ads";
+const PAGE_PATH = "/how-to-increase-roas-meta-ads";
+const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faqs = [
   {
@@ -77,15 +79,7 @@ const MetaAdsROASPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useSEO({
-    title:
-      "How to Increase ROAS on Meta Ads Using Neuroscience & Emotional Marketing",
-    description:
-      "Learn how to increase ROAS on Meta Ads using neuroscience, emotional marketing, and consumer psychology. Discover proven strategies to improve ad performance, lower acquisition costs, and maximize return on ad spend.",
-    keywords:
-      "How to Increase ROAS, Meta Ads ROAS, increase ROAS on Meta Ads, return on ad spend, Meta Ads optimization, Facebook Ads ROAS, emotional marketing, consumer psychology, neuroscience marketing, Meta advertising strategy, improve ad performance, digital advertising, paid social marketing",
-    canonical: PAGE_URL,
-  });
+  useSEO(PAGE_SEO[PAGE_PATH]);
 
   useJsonLd("blog-post-meta-ads-roas", {
     "@context": "https://schema.org",
@@ -104,7 +98,7 @@ const MetaAdsROASPage = () => {
       name: "Neuromatter",
       logo: {
         "@type": "ImageObject",
-        url: "https://neuromatter.vercel.app/neuromatter-logo.png",
+        url: OG_IMAGE,
       },
     },
     mainEntityOfPage: {

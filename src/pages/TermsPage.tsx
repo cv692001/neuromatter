@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/use-seo";
+import { PAGE_SEO } from "@/lib/site-config";
 
 const TermsPage = () => {
+  useSEO(PAGE_SEO["/terms"]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -91,10 +95,10 @@ const TermsPage = () => {
                 <p>
                   If you have any questions about these Terms, contact us at{" "}
                   <a
-                    href="mailto:Contact@neuromatter.com"
+                    href="mailto:contact@neuromatter.in"
                     className="text-primary underline underline-offset-4"
                   >
-                    Contact@neuromatter.com
+                    contact@neuromatter.in
                   </a>
                   .
                 </p>
