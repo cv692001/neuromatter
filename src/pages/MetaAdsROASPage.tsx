@@ -88,7 +88,7 @@ const MetaAdsROASPage = () => {
       "How to Increase ROAS on Meta Ads Using Neuroscience and Emotional Marketing",
     description:
       "Learn how to increase ROAS on Meta Ads using neuroscience, emotional marketing, and consumer psychology. Discover proven strategies to improve ad performance, lower acquisition costs, and maximize return on ad spend.",
-    image: "https://www.neuromatter.in/how-to-increase-roas-meta-ads.jpg",
+    image: OG_IMAGE,
     author: {
       "@type": "Person",
       name: "Tamil Mani",
