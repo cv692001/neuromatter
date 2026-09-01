@@ -9,6 +9,10 @@ const payload = JSON.stringify({
     "https://www.neuromatter.in/offerings",
     "https://www.neuromatter.in/technology",
     "https://www.neuromatter.in/news",
+    "https://www.neuromatter.in/best-neuromarketing-agency-india",
+    "https://www.neuromatter.in/best-conversion-rate-optimization-agencies-india",
+    "https://www.neuromatter.in/conversion-rate-optimization-strategy",
+    "https://www.neuromatter.in/how-to-increase-roas-meta-ads",
   ],
 });
 

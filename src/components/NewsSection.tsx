@@ -35,6 +35,13 @@ const blogPosts = [
       "Discover a proven conversion rate optimization strategy using neuroscience, consumer psychology, and behavioral science to increase conversions without increasing your spend.",
     href: "/conversion-rate-optimization-strategy",
   },
+  {
+    title:
+      "How to Increase ROAS on Meta Ads Using Neuroscience and Emotional Marketing",
+    excerpt:
+      "Meta's algorithm finds the right people. Your creative decides whether they buy. Eight neuroscience-backed strategies to increase ROAS on Meta ads.",
+    href: "/how-to-increase-roas-meta-ads",
+  },
 ];
 
 // Other news articles

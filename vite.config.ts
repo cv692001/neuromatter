@@ -35,6 +35,7 @@ export default defineConfig(({ mode }) => ({
         "/best-neuromarketing-agency-india",
         "/best-conversion-rate-optimization-agencies-india",
         "/conversion-rate-optimization-strategy",
+        "/how-to-increase-roas-meta-ads",
       ],
       readable: true,
     }),
