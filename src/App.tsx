@@ -11,6 +11,7 @@ import BestNeuromarketingAgencyPage from "./pages/BestNeuromarketingAgencyPage";
 import BestCROAgencyPage from "./pages/BestCROAgencyPage";
 import CROStrategyPage from "./pages/CROStrategyPage";
 import MetaAdsROASPage from "./pages/MetaAdsROASPage";
+import NeuromarketingMethodsPage from "./pages/NeuromarketingMethodsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
@@ -43,6 +44,10 @@ const App = () => (
           <Route
             path="/how-to-increase-roas-meta-ads"
             element={<MetaAdsROASPage />}
+          />
+          <Route
+            path="/best-neuromarketing-methods-and-tools"
+            element={<NeuromarketingMethodsPage />}
           />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />

@@ -42,6 +42,13 @@ const blogPosts = [
       "Meta's algorithm finds the right people. Your creative decides whether they buy. Eight neuroscience-backed strategies to increase ROAS on Meta ads.",
     href: "/how-to-increase-roas-meta-ads",
   },
+  {
+    title:
+      "5 Best Neuromarketing Methods and Tools Used in Consumer Neuroscience",
+    excerpt:
+      "What happens in the brain before a customer clicks, feels, or buys? Explore the 5 best neuromarketing methods and tools used to uncover consumer responses.",
+    href: "/best-neuromarketing-methods-and-tools",
+  },
 ];
 
 // Other news articles

@@ -123,6 +123,17 @@ export const PAGES: PageSeo[] = [
     ogType: "article",
     inSitemap: true,
   },
+  {
+    path: "/best-neuromarketing-methods-and-tools",
+    title:
+      "Best Neuromarketing Methods and Tools Used in Consumer Neuroscience",
+    description:
+      "What happens in the brain before a customer clicks, feels, or buys? Explore 5 best neuromarketing methods and tools used to uncover consumer responses.",
+    keywords:
+      "best neuromarketing methods, neuromarketing tools, consumer neuroscience, EEG neuromarketing, eye-tracking, facial emotion coding, galvanic skin response, GSR, implicit association testing, IAT, brain research marketing, subconscious consumer behaviour",
+    ogType: "article",
+    inSitemap: true,
+  },
   // Crawlable and self-canonical, but kept out of the sitemap.
   { path: "/privacy", ogType: "website", inSitemap: false },
   { path: "/terms", ogType: "website", inSitemap: false },
