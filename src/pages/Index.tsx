@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import WhyHowSection from "@/components/WhyHowSection";
 import TechBehindSection from "@/components/TechBehindSection";
+import StartupsSection from "@/components/StartupsSection";
 // import PeopleSection from "@/components/PeopleSection"; // Hidden for now
 import ClientsSection from "@/components/ClientsSection";
 // import SeenAroundSection from "@/components/SeenAroundSection"; // Hidden for now - photos to be added later
@@ -20,6 +21,7 @@ const Index = () => {
       <AboutSection />
       <WhyHowSection />
       <TechBehindSection />
+      <StartupsSection />
       {/* <PeopleSection /> */}
       <ClientsSection />
       {/* <SeenAroundSection /> */}
