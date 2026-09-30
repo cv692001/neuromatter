@@ -38,7 +38,7 @@ const mentors: Person[] = [
     initials: "JG",
     image: "/mentor-jayanth-govindraj.jpg",
     imageSide: "right",
-    role: "ex-WPP Media (National Planning Director)",
+    role: "ex-WPP Creative (National Planning Director)",
     points: [
       "Strategic leader with deep expertise at the intersection of neuroscience, human behavior, and marketing.",
       "Focused on leveraging data and cognitive research to understand what truly drives consumer choices.",

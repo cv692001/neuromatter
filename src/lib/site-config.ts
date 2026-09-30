@@ -83,7 +83,7 @@ export const PAGES: PageSeo[] = [
     path: "/about-us",
     title: "About Us | Neuromatter",
     description:
-      "Meet the mentors behind Neuromatter: agency leaders from Ogilvy, MullenLowe Lintas and WPP Media guiding our neuroscience-led approach to marketing.",
+      "Meet the mentors behind Neuromatter: agency leaders from Ogilvy, MullenLowe Lintas and WPP Creative guiding our neuroscience-led approach to marketing.",
     ogType: "website",
     inSitemap: true,
   },
