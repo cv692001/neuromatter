@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import OfferingsPage from "./pages/OfferingsPage";
 import TechnologyPage from "./pages/TechnologyPage";
 import NewsPage from "./pages/NewsPage";
+import AboutPage from "./pages/AboutPage";
 import BestNeuromarketingAgencyPage from "./pages/BestNeuromarketingAgencyPage";
 import BestCROAgencyPage from "./pages/BestCROAgencyPage";
 import CROStrategyPage from "./pages/CROStrategyPage";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/offerings" element={<OfferingsPage />} />
           <Route path="/technology" element={<TechnologyPage />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/about-us" element={<AboutPage />} />
           <Route
             path="/best-neuromarketing-agency-india"
             element={<BestNeuromarketingAgencyPage />}

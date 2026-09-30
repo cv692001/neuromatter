@@ -9,6 +9,7 @@ const navItems = [
   { name: "Offerings", href: "/offerings", isRoute: true },
   { name: "Technology", href: "/technology", isRoute: true },
   { name: "News & Blogs", href: "/news", isRoute: true },
+  { name: "About Us", href: "/about-us", isRoute: true },
 ];
 
 const Header = () => {

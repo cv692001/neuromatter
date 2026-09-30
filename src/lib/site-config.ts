@@ -80,6 +80,14 @@ export const PAGES: PageSeo[] = [
     inSitemap: true,
   },
   {
+    path: "/about-us",
+    title: "About Us | Neuromatter",
+    description:
+      "Meet the mentors behind Neuromatter: agency leaders from Ogilvy, MullenLowe Lintas and WPP Media guiding our neuroscience-led approach to marketing.",
+    ogType: "website",
+    inSitemap: true,
+  },
+  {
     path: "/best-neuromarketing-agency-india",
     title:
       "Who Is the Best Neuromarketing Agency in India in 2026? Our Ranked List",

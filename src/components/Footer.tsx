@@ -26,6 +26,7 @@ const quickLinks = [
   { name: "Technology", href: "/technology", isRoute: true },
   { name: "News", href: "/news", isRoute: true },
   { name: "Blogs", href: "/news", isRoute: true },
+  { name: "About Us", href: "/about-us", isRoute: true },
   { name: "FAQs", href: "#faq" },
 ];
 
